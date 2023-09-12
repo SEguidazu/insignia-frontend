@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import { Providers } from "./providers";
 
 import Header from "@/app/components/Header";
+import A11ySkip from "@/app/components/A11ySkip";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
+        <A11ySkip />
         <Header />
         <Providers>{children}</Providers>
       </body>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import CatalogPopover from "@/app/components/Header/CatalogPopover";
+import CatalogModal from "@/app/components/Header/CatalogModal";
 import Search from "@/app/components/Header/Search";
 import ProfilePopover from "@/app/components/Header/ProfilePopover";
 import LogoInsignia from "@/assets/LogoInsignia.svg";
@@ -14,11 +14,11 @@ export default async function Header() {
   return (
     <header className="shadow-lg">
       <div className="container mx-auto py-4 flex justify-between items-center">
-        <Link href="/">
-          <Image src={LogoInsignia} alt="Insigia" priority />
+        <Link href="/" aria-label="Pagina principal de Isnignia">
+          <Image src={LogoInsignia} alt="" priority />
         </Link>
 
-        <CatalogPopover catalogMenu={catalogMenu} />
+        <CatalogModal catalogMenu={catalogMenu} />
 
         <Search />
 

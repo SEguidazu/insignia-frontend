@@ -10,6 +10,7 @@ function Search() {
     setSearch(event.target.value);
   };
 
+  // TODO: Realizar el funcionamiento del buscador
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event.target.search.value);
@@ -18,6 +19,7 @@ function Search() {
   return (
     <form className="max-w-sm w-full" onSubmit={handleSubmit}>
       <Input
+        id="search-input"
         type="text"
         name="search"
         value={search}

@@ -12,7 +12,7 @@ export default async function Header() {
   const catalogMenu = await getCatalogMenu();
 
   return (
-    <header className="shadow-lg">
+    <header className="shadow-lg mb-9">
       <div className="container mx-auto py-4 flex justify-between items-center">
         <Link href="/" aria-label="Pagina principal de Isnignia">
           <Image src={LogoInsignia} alt="" priority />

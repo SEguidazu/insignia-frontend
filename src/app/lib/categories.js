@@ -9,7 +9,7 @@ export const getCatalogMenu = async () => {
 
 export const getCategories = async () => {
   return await axiosConfig
-    .get("/categories")
+    .get("/categories?populate=image")
     .then((response) => response.data)
     .catch((e) => console.error("[ERROR_CATEGORIES]", e.cause));
 };

@@ -12,7 +12,11 @@ module.exports = {
     extend: {
       colors: {
         main: "#1E1E1E",
+        secondary: "#F7F7F7",
         light: "#FCFFFC",
+        gray: "#CCCCCC",
+        success: "#2CB708",
+        failure: "#FF0101",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

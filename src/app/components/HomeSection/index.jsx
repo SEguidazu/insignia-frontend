@@ -20,7 +20,7 @@ export default async function HomeSection() {
             index < 5 && (
               <article
                 key={category_id}
-                className="max-w-[180px] w-full border-1 rounded-xl bg-light"
+                className="max-w-[180px] w-full rounded-xl bg-light border-1 border-light drop-shadow hover:border-gray hover:drop-shadow-lg ease-out"
               >
                 <Link
                   href={`/${slug}`}

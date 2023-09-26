@@ -14,7 +14,7 @@ import {
 
 import { BurgerIcon } from "@/assets/icons";
 
-export default function CatalogModal({ catalogMenu }) {
+export default function CatalogModal({ catalogMenu = [] }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // TODO: Manejar el routing de las categorias

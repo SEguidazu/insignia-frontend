@@ -15,7 +15,6 @@ export default async function Home() {
       <HomeSection />
       <FeaturedProducts />
       <InformationSection />
-      <Button>Esta es un boton de NextUI</Button>
     </main>
   );
 }

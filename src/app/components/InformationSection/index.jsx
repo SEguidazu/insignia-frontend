@@ -10,7 +10,7 @@ export default function InformationSection() {
     >
       <article
         id="consign"
-        className="inline-flex justify-center items-center flex-col text-main_hover rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
+        className="inline-flex justify-center items-center flex-col text-main_hover rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:drop-shadow-lg ease-out"
       >
         <h2 className="mb-4 text-4xl font-medium">Envío gratis</h2>
         <p className="text-base font-bold uppercase">A partir de los $15,000</p>

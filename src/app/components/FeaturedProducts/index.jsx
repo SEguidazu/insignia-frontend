@@ -7,7 +7,7 @@ export default async function FeaturedProducts() {
   const { results } = await getFeaturedProducts();
 
   // const { products } = results[0];
-  console.log(results);
+  // console.log(results);
   return (
     results && (
       <section

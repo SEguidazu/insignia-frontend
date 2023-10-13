@@ -1,13 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/app/store/user";
-import {
-  BoxedCheckIconLight,
-  HeartIconLight,
-  ToolsIconLight,
-  UserIconDark,
-  UserIconLight,
-} from "@/assets/icons";
+import useHasHydrated from "@/app/hook/useHasHydrated";
 
 import {
   Popover,
@@ -20,14 +14,20 @@ import {
 import Link from "next/link";
 import LoginModal from "@/app/components/LoginModal";
 
-import useHasHydrated from "@/app/hook/useHasHydrated";
+import {
+  BoxedCheckIconLight,
+  HeartIconLight,
+  ToolsIconLight,
+  UserIconDark,
+  UserIconLight,
+} from "@/assets/icons";
 
 export default function ProfilePopover() {
   const hasHydrated = useHasHydrated();
   const user = useUserStore((state) => state.user);
   const setUserLoggedOut = useUserStore((state) => state.setUserLoggedOut);
 
-  console.log(user);
+  // console.log(user);
   return hasHydrated && user.username ? (
     <Popover placement="bottom-end" offset={10}>
       <PopoverTrigger>

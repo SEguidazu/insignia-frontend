@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@nextui-org/react";
-import { CartIconWhite } from "@/assets/icons";
+import { CartIconLight } from "@/assets/icons";
 
 export default function AddCartButton() {
   return (
     <Button
       className="w-full bg-black text-base text-white"
       radius="sm"
-      endContent={<CartIconWhite />}
+      endContent={<CartIconLight />}
     >
       Agregar al carrito
     </Button>

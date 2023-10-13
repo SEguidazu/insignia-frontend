@@ -5,7 +5,7 @@ import CatalogModal from "@/app/components/Header/CatalogModal";
 import Search from "@/app/components/Header/Search";
 import ProfilePopover from "@/app/components/Header/ProfilePopover";
 import LogoInsignia from "@/assets/LogoInsignia.svg";
-import { CartIconBlack } from "@/assets/icons";
+import { CartIconDark } from "@/assets/icons";
 
 export default async function Header({ catalogMenu }) {
   return (
@@ -19,7 +19,7 @@ export default async function Header({ catalogMenu }) {
 
         <Search />
 
-        <CartIconBlack />
+        <CartIconDark />
 
         <ProfilePopover />
       </div>

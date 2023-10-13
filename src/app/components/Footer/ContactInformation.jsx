@@ -9,7 +9,10 @@ export default function ContactInformation() {
         title="Insignia"
         className="text-base text-secondary_link italic"
       >
-        <ListboxItem className="not-italic">
+        <ListboxItem
+          className="not-italic"
+          textValue="contacto@joyasinsignia.com.ar"
+        >
           <Link
             href="mailto:contacto@joyasinsignia.com.ar"
             target="_blank"
@@ -18,7 +21,7 @@ export default function ContactInformation() {
             contacto@joyasinsignia.com.ar
           </Link>
         </ListboxItem>
-        <ListboxItem className="not-italic">
+        <ListboxItem className="not-italic" textValue="+54 11 1234 5678">
           <Link
             href="tel:541112345678"
             target="_blank"

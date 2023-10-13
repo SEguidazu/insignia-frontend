@@ -1,10 +1,10 @@
 import axiosConfig from "@/app/lib/config";
 
-export const loginStrapi = async () => {
+export const loginStrapi = async ({ identifier, password }) => {
   return await axiosConfig
-    .get("/products?filters[is_featured][$eq]=true&populate=images")
-    .then((response) => response.data)
-    .catch((e) => console.error("[ERROR_FEATURED_PRODUCTS]", e.cause));
+    .post("/auth/local", { identifier, password })
+    .then((response) => ({ data: response.data, error: null }))
+    .catch(({ response }) => ({ data: null, error: response?.data?.error }));
 };
 
 export const registerUserStrapi = async (values) => {

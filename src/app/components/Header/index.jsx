@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import CatalogModal from "@/app/components/Header/CatalogModal";
 import Search from "@/app/components/Header/Search";
-import ProfilePopover from "@/app/components/Header/ProfilePopover";
+import ProfilePopover from "@/app/components/ProfilePopover";
+import MiniCart from "@/app/components/MiniCart";
 import LogoInsignia from "@/assets/LogoInsignia.svg";
-import { CartIconDark } from "@/assets/icons";
 
 export default async function Header({ catalogMenu }) {
   return (
@@ -19,7 +19,7 @@ export default async function Header({ catalogMenu }) {
 
         <Search />
 
-        <CartIconDark />
+        <MiniCart />
 
         <ProfilePopover />
       </div>

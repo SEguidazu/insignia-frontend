@@ -8,11 +8,14 @@ const initialState = {
   total: 0,
 };
 
-function isStockEnabled(product) {
-  return product.stock > 0 && product.stock >= product.qty;
+function isStockEnabled(product, qty) {
+  if (product?.qty)
+    return product.stock > 0 && product.stock >= product.qty + qty;
+
+  return product.stock > 0 && product.stock > qty;
 }
 
-function addProduct(set, get, product) {
+function addProduct(set, get, product, qty = 1) {
   const { cart } = get();
 
   const indexInCart = cart?.findIndex(
@@ -21,17 +24,17 @@ function addProduct(set, get, product) {
 
   if (indexInCart === -1)
     set((state) => ({
-      cart: [...state.cart, { ...product, qty: 1 }],
-      total: state.total + product.price,
+      cart: [...state.cart, { ...product, qty }],
+      total: state.total + product.price * qty,
     }));
-  else if (isStockEnabled(cart[indexInCart]))
+  else if (isStockEnabled(cart[indexInCart], qty))
     set((state) => ({
       cart: state.cart.map((item) =>
         item.product_id === product.product_id
-          ? { ...item, qty: item.qty + 1 }
+          ? { ...item, qty: item.qty + qty }
           : item
       ),
-      total: state.total + product.price,
+      total: state.total + product.price * qty,
     }));
 }
 
@@ -79,13 +82,25 @@ function removeAllProducts(set, get, product) {
   }
 }
 
+function getProductQtyInCart(get, product) {
+  const { cart } = get();
+
+  const indexInCart = cart?.findIndex(
+    (item) => item.product_id === product?.product_id
+  );
+
+  if (indexInCart === -1) return 0;
+
+  return cart[indexInCart].qty;
+}
+
 export const useCartStore = create(
   devtools(
     persist(
       (set, get) => ({
         cart: initialState.cart,
         total: initialState.total,
-        addProduct: (product) => addProduct(set, get, product),
+        addProduct: (product, qty = 1) => addProduct(set, get, product, qty),
         removeProduct: (product) => removeProduct(set, get, product),
         removeAllProducts: (product) => removeAllProducts(set, get, product),
         emptyCart: () => {
@@ -94,6 +109,7 @@ export const useCartStore = create(
             total: initialState.total,
           }));
         },
+        getProductQtyInCart: (product) => getProductQtyInCart(get, product),
       }),
       { name: "cart" }
     )

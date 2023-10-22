@@ -30,24 +30,24 @@ export default function MiniCartProduct(product) {
             <p className="text-lg text-main font-bold">${product.price}.-</p>
             <ButtonGroup>
               <Button
-                className="min-w-0 w-8 h-8 text-lg text-black border-r-0 border-black"
+                className="min-w-0 w-8 h-8 text-xl text-black border-r-0 border-black"
+                size="sm"
+                variant="bordered"
+                onClick={(e) => removeProduct(product)}
+              >
+                -
+              </Button>
+              <span className="w-8 h-8 text-base text-black text-center leading-[1.9] border-y-2 border-black">
+                {product.qty}
+              </span>
+              <Button
+                className="min-w-0 w-8 h-8 text-lg text-black border-l-0 border-black"
                 size="sm"
                 variant="bordered"
                 onClick={(e) => addProduct(product)}
                 isDisabled={product.stock === product.qty}
               >
                 +
-              </Button>
-              <span className="w-8 h-8 text-base text-black text-center leading-[1.9] border-y-2 border-black">
-                {product.qty}
-              </span>
-              <Button
-                className="min-w-0 w-8 h-8 text-xl text-black border-l-0 border-black"
-                size="sm"
-                variant="bordered"
-                onClick={(e) => removeProduct(product)}
-              >
-                -
               </Button>
             </ButtonGroup>
           </div>

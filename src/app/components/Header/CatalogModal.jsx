@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import {
   useDisclosure,
   Modal,
@@ -16,10 +18,13 @@ import { BurgerIcon } from "@/assets/icons";
 
 export default function CatalogModal({ catalogMenu = [] }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter();
 
-  // TODO: Manejar el routing de las categorias
   const onPressHandler = (event) => {
-    console.log(event.target.getAttribute("data-path"));
+    const slugs = event.target.getAttribute("data-path");
+
+    router.push(`/categoria/${slugs}`);
+    onOpenChange();
   };
 
   return (
@@ -49,8 +54,8 @@ export default function CatalogModal({ catalogMenu = [] }) {
                     >
                       {items.map(({ id, title, path }) => (
                         <ListboxItem
-                          onPress={onPressHandler}
                           key={id}
+                          onPress={onPressHandler}
                           title={title}
                           aria-label={title}
                           data-path={path}

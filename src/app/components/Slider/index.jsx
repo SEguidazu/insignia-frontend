@@ -1,10 +1,12 @@
 "use client";
+
 import React, { useState } from "react";
 import { Image, Button } from "@nextui-org/react";
 
 import { ArrowRightIcon } from "@/assets/icons";
+import { SliderSizes } from "@/app/lib/constant";
 
-export default function Slider({ images = [] }) {
+export default function Slider({ images = [], size = "medium" }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const prevSlide = () => {
@@ -33,9 +35,13 @@ export default function Slider({ images = [] }) {
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {images.map((slide) => (
-            <li key={slide.id} className="w-full shrink-0">
+            <li
+              key={slide.id}
+              className="w-full shrink-0"
+              style={{ maxHeight: SliderSizes[size] }}
+            >
               <Image
-                className="w-full max-h-[400px] object-cover"
+                className="w-full h-full object-cover"
                 src={`http://127.0.0.1:1337${slide.url}`}
                 alt={slide?.alternativeText ?? ""}
                 removeWrapper

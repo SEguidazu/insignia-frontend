@@ -1,8 +1,6 @@
+import ProductCard from "@/app/components/ProductCard";
+
 import { getFeaturedProducts } from "@/app/lib/products";
-import Image from "next/image";
-import AddCartButton from "@/app/components/AddCartButton";
-import Label from "@/app/components/Label";
-import ProductCard from "../ProductCard";
 
 export default async function FeaturedProducts() {
   const { results } = await getFeaturedProducts();

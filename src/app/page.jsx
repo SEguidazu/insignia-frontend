@@ -1,4 +1,3 @@
-import { Button } from "@nextui-org/button";
 import Slider from "@/app/components/Slider";
 import HomeSection from "@/app/components/HomeSection";
 import FeaturedProducts from "@/app/components/FeaturedProducts";

@@ -1,34 +1,22 @@
 import Link from "next/link";
-import { WhatsappIcon } from "@/assets/icons";
+import Image from "next/image";
+import Truck from "@/assets/Truck.svg";
 import InfoModal from "./InfoModal";
 
 export default function InformationSection() {
   return (
     <section
       id="info-section"
-      className="w-full grid grid-cols-2 grid-rows-[230px_230px] gap-5 my-[7rem]"
+      className="w-full grid grid-cols-2 grid-rows-[120px_230px] gap-5 my-[7rem]"
     >
       <article
         id="consign"
-        className="inline-flex justify-center items-center flex-col text-main_hover rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:drop-shadow-lg ease-out"
+        className="inline-flex justify-center items-center col-span-2 gap-4 text-main_hover rounded-2xl border-1 border-wpps_primary bg-wpps_secondary drop-shadow hover:drop-shadow-lg ease-out"
       >
-        <h2 className="mb-4 text-4xl font-medium">Envío gratis</h2>
-        <p className="text-base font-bold uppercase">A partir de los $15,000</p>
-      </article>
-      <article
-        id="whatsapp"
-        className="text-main_hover rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:text-white hover:bg-wpps_bgcolor hover:drop-shadow-lg ease-out"
-      >
-        <Link
-          href="https://wa.me/+5491168460775?text=esunaprueba"
-          target="_blank"
-          className="w-full h-full inline-flex justify-center items-center flex-col"
-        >
-          <h2 className="mb-4 text-4xl font-medium">¿Dudas o consultas?</h2>
-          <button className="w-80 inline-flex justify-center items-center gap-2  p-2 rounded-md text-white bg-wpps_bgcolor">
-            <WhatsappIcon /> Escribinos por WhatsApp
-          </button>
-        </Link>
+        <Image src={Truck} alt="" />
+        <h2 className="text-4xl font-medium">
+          Envío gratis a partir de los $15,000
+        </h2>
       </article>
       <InfoModal
         title="¿Quiénes somos?"

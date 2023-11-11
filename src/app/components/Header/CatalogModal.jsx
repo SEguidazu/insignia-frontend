@@ -43,8 +43,8 @@ export default function CatalogModal({ catalogMenu = [] }) {
               <ModalHeader>Categorías</ModalHeader>
               <ModalBody className="py-8 px-10">
                 <Listbox
+                  id="header-category_list"
                   aria-label="Listado de Categorías"
-                  className="grid grid-cols-4 gap-4"
                 >
                   {catalogMenu?.map(({ id, title, path, items, ...rest }) => (
                     <ListboxSection

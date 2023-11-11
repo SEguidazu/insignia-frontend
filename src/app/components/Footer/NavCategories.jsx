@@ -8,10 +8,7 @@ export default function NavCategories({ catalogMenu = [] }) {
   };
 
   return (
-    <Listbox
-      aria-label="Listado de Categorías"
-      className="grid grid-cols-4 gap-4"
-    >
+    <Listbox id="footer-category_list" aria-label="Listado de Categorías">
       {catalogMenu?.map(
         ({ id, title, path, items = [], ...rest }) =>
           items.length > 0 && (

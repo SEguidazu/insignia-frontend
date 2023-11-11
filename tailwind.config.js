@@ -10,19 +10,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        main: "#1E1E1E",
-        main_hover: "#323232",
-        main_stroke: "#E4E7EE",
-        main_bgcolor: "#F3F4F5",
-        wpps_bgcolor: "#25D366",
-        secondary: "#F7F7F7",
-        secondary_link: "#6C757D",
-        light: "#FCFFFC",
-        gray: "#CCCCCC",
-        success: "#2CB708",
-        failure: "#FF0101",
-      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -31,5 +18,27 @@ module.exports = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            main: "#1E1E1E",
+            main_hover: "#323232",
+            main_stroke: "#E4E7EE",
+            main_bgcolor: "#F3F4F5",
+            wpps_bg: "#2CB708",
+            wpps_primary: "#2CB708",
+            wpps_secondary: "#EEF6EF",
+            secondary: "#F7F7F7",
+            secondary_link: "#6C757D",
+            light: "#FCFFFC",
+            gray: "#CCCCCC",
+            success: "#2CB708",
+            failure: "#FF0101",
+          },
+        },
+      },
+    }),
+  ],
 };

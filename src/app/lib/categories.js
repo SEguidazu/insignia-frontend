@@ -14,3 +14,21 @@ export const getCategories = async ({ withImages = false }) => {
     .then((response) => response.data)
     .catch((e) => console.error("[ERROR_CATEGORIES]", e.cause));
 };
+
+export const getFilters = async () => {
+  return Promise.allSettled([
+    axiosConfig.get("/categories"),
+    axiosConfig.get("/subcategories"),
+  ])
+    .then((results) =>
+      results.map((result) =>
+        result.status === "fulfilled"
+          ? {
+              status: result.status,
+              ...result.value.data,
+            }
+          : { status: result.status }
+      )
+    )
+    .catch((e) => console.error("[ERROR_FILTERS]", e.cause));
+};

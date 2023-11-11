@@ -1,4 +1,8 @@
 import axiosConfig from "@/app/lib/config";
+import qs from "qs";
+
+const slugFilters = ["category", "subcategory"];
+const simpleFilters = ["genero"];
 
 export const getFeaturedProducts = async () => {
   return await axiosConfig
@@ -8,15 +12,49 @@ export const getFeaturedProducts = async () => {
 };
 
 export const getProducts = async (searchParams) => {
-  const filters = Object.entries(searchParams)?.map(
-    ([key, value], index) =>
-      `filters[$and][${index}][${key}][slug][$eq]=${value}`
+  const page = searchParams["page"] ?? 1;
+  const filters = Object.entries(searchParams)?.reduce((acc, [key, value]) => {
+    if (slugFilters.includes(key))
+      return [
+        ...acc,
+        {
+          [key]: {
+            slug: {
+              $in: value?.split(","),
+            },
+          },
+        },
+      ];
+    if (simpleFilters.includes(key))
+      return [
+        ...acc,
+        {
+          [key]: {
+            $in: value?.split(","),
+          },
+        },
+      ];
+    return acc;
+  }, []);
+
+  const query = qs.stringify(
+    {
+      populate: "images,category,subcategory",
+      filters: {
+        $and: [...filters],
+      },
+      pagination: {
+        page,
+        pageSize: 9,
+      },
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
   );
 
-  const params = filters.length > 0 ? `&${filters.join("&")}` : "";
-
   return await axiosConfig
-    .get(`/products?populate=images,category,subcategory${params}`)
+    .get(`/products?${query}`)
     .then((response) => response.data)
     .catch((e) => console.error("[ERROR_PRODUCTS]", e.cause));
 };

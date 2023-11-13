@@ -1,40 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { registerUserStrapi } from "@/app/lib/users";
+import { registerUserStrapi, provinces } from "@/app/lib/users";
 
 export default function SignUpForm({}) {
+  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const onSubmit = async (formData) => {
-    const {
-      username,
-      password,
-      email,
-      name,
-      whatsapp,
-      street,
-      number,
-      province,
-    } = formData;
+    try {
+      setLoading(true);
+      const user = await registerUserStrapi(formData);
 
-    const user = await registerUserStrapi({
-      username,
-      password,
-      email,
-      name,
-      whatsapp,
-      address: `${street} ${number}, ${province}`,
-    });
-
-    if (user) console.log(user);
+      if (user) router.push("/registro/exitoso");
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,11 +42,10 @@ export default function SignUpForm({}) {
           variant="bordered"
           radius="sm"
           isInvalid={errors?.username?.type === "required"}
-          errorMessage={
-            errors?.username?.type === "required" &&
-            "El usuario es un campo requerido."
-          }
-          {...register("username", { required: true })}
+          errorMessage={errors?.username?.message}
+          {...register("username", {
+            required: "El usuario es un campo requerido.",
+          })}
         />
         <Input
           id="password"
@@ -61,56 +54,83 @@ export default function SignUpForm({}) {
           variant="bordered"
           radius="sm"
           isInvalid={errors?.password?.type === "required"}
-          errorMessage={
-            errors?.password?.type === "required" &&
-            "La contraseña es un campo requerido."
-          }
-          {...register("password", { required: true })}
+          errorMessage={errors?.password?.message}
+          {...register("password", {
+            required: "La contraseña es un campo requerido.",
+            minLength: {
+              value: 8,
+              message: "La contraseña debe tener al menos 8 caracteres.",
+            },
+          })}
         />
       </div>
 
       <div className="text-lg text-main font-bold mt-6">
         <label className="block mb-3">Nombre y apellido</label>
         <Input
-          id="name"
+          id="fullname"
           placeholder="Nombre y apellido"
           variant="bordered"
           radius="sm"
-          isInvalid={errors?.name?.type === "required"}
-          errorMessage={
-            errors?.name?.type === "required" &&
-            "El nombre y apellido es un campo requerido."
-          }
-          {...register("name", { required: true })}
+          isInvalid={errors?.fullname?.type === "required"}
+          errorMessage={errors?.fullname?.message}
+          {...register("fullname", {
+            required: "El nombre y apellido es un campo requerido.",
+          })}
         />
       </div>
 
-      <div className="grid grid-cols-[.7fr_.3fr] grid-rows-[repeat(auto,3)] gap-x-4 text-lg text-main font-bold mt-6">
+      <div className="grid grid-cols-[.7fr_.3fr] grid-rows-[repeat(3,auto)] gap-x-4 text-lg text-main font-bold mt-6">
         <label className="block mb-3 col-span-2">Dirección</label>
         <Input
           id="street"
+          className="mt-4"
           placeholder="Nombre de la calle"
           variant="bordered"
           radius="sm"
           isInvalid={errors?.street?.type === "required"}
-          errorMessage={
-            errors?.street?.type === "required" &&
-            "El nombre de la calle es un campo requerido."
-          }
-          {...register("street", { required: true })}
+          errorMessage={errors?.street?.message}
+          {...register("street", {
+            required: "El nombre de la calle es un campo requerido.",
+          })}
         />
         <Input
           id="number"
+          className="mt-4"
           type="number"
           placeholder="Número"
           variant="bordered"
           radius="sm"
           isInvalid={errors?.number?.type === "required"}
-          errorMessage={
-            errors?.number?.type === "required" &&
-            "El numero de domicilio es un campo requerido."
-          }
-          {...register("number", { required: true })}
+          errorMessage={errors?.number?.message}
+          {...register("number", {
+            required: "El numero de domicilio es un campo requerido.",
+          })}
+        />
+        <Input
+          id="city"
+          className="mt-4"
+          placeholder="Ciudad / Barrio"
+          variant="bordered"
+          radius="sm"
+          isInvalid={errors?.city?.type === "required"}
+          errorMessage={errors?.city?.message}
+          {...register("city", {
+            required: "La ciudad/barrio es un campo requerido.",
+          })}
+        />
+        <Input
+          id="postal_code"
+          className="mt-4"
+          type="number"
+          placeholder="Código postal"
+          variant="bordered"
+          radius="sm"
+          isInvalid={errors?.postal_code?.type === "required"}
+          errorMessage={errors?.postal_code?.message}
+          {...register("postal_code", {
+            required: "El código postal es un campo requerido.",
+          })}
         />
         <Select
           id="province"
@@ -120,28 +140,20 @@ export default function SignUpForm({}) {
           variant="bordered"
           radius="sm"
           isInvalid={errors?.province?.type === "required"}
-          errorMessage={
-            errors?.province?.type === "required" &&
-            "La provincia es un campo requerido."
-          }
-          {...register("province", { required: true })}
+          errorMessage={errors?.province?.message}
+          {...register("province", {
+            required: "La provincia es un campo requerido.",
+          })}
         >
-          <SelectItem key="Buenos Aires" textValue="BuenosAires">
-            Buenos Aires
-          </SelectItem>
-          <SelectItem key="Formosa" textValue="Formosa">
-            Formosa
-          </SelectItem>
-          <SelectItem key="CABA" textValue="asd">
-            CABA
-          </SelectItem>
-          <SelectItem key="La Pampa" textValue="qwe">
-            La Pampa
-          </SelectItem>
+          {provinces.map((province) => (
+            <SelectItem key={province} textValue={province}>
+              {province}
+            </SelectItem>
+          ))}
         </Select>
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-[repeat(auto, 2)] gap-x-4 text-lg text-main font-bold mt-6">
+      <div className="grid grid-cols-2 grid-rows-[repeat(2, auto)] gap-x-4 text-lg text-main font-bold mt-6">
         <label className="block mb-3 col-span-2">Contacto</label>
         <Input
           id="email"
@@ -150,11 +162,10 @@ export default function SignUpForm({}) {
           variant="bordered"
           radius="sm"
           isInvalid={errors?.email?.type === "required"}
-          errorMessage={
-            errors?.email?.type === "required" &&
-            "El email es un campo requerido."
-          }
-          {...register("email", { required: true })}
+          errorMessage={errors?.email?.message}
+          {...register("email", {
+            required: "El email es un campo requerido.",
+          })}
         />
         <Input
           id="whatsapp"
@@ -164,18 +175,26 @@ export default function SignUpForm({}) {
           variant="bordered"
           radius="sm"
           isInvalid={errors?.whatsapp?.type === "required"}
-          errorMessage={
-            errors?.whatsapp?.type === "required" &&
-            "El numero de WhatsApp es un campo requerido."
-          }
-          {...register("whatsapp", { required: true })}
+          errorMessage={errors?.whatsapp?.message}
+          {...register("whatsapp", {
+            required: "El numero de WhatsApp es un campo requerido.",
+          })}
         />
       </div>
+
+      <span
+        className={`block mt-4 mx-auto text-base text-center text-danger ${
+          error ? "" : "invisible"
+        }`}
+      >
+        {error}
+      </span>
 
       <Button
         type="submit"
         className="block mt-12 ml-auto px-8 bg-black text-base text-white"
         radius="sm"
+        isDisabled={loading}
       >
         Finalizar registro
       </Button>

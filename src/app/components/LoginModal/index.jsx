@@ -17,7 +17,8 @@ import { useUserStore } from "@/app/store/user";
 export default function LoginModal() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const setUserLoggedIn = useUserStore((state) => state.setUserLoggedIn);
 
@@ -30,15 +31,19 @@ export default function LoginModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleLogin = async (formData) => {
-    const response = await loginStrapi({
-      identifier: formData.login_email,
-      password: formData.login_password,
-    });
+    try {
+      setLoading(true);
+      const user = await loginStrapi({
+        identifier: formData.login_email,
+        password: formData.login_password,
+      });
 
-    if (response.data) {
-      setUserLoggedIn(response.data);
-    } else if (response.error) {
+      if (user) setUserLoggedIn(user);
+    } catch (error) {
+      console.error(error);
       setErrorMessage("El email o la contraseña son invalidos.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,7 +70,7 @@ export default function LoginModal() {
           radius="sm"
           className="mb-4"
           isInvalid={
-            errors?.login_email?.type === "required" || errorMessage.length > 0
+            errors?.login_email?.type === "required" || errorMessage?.length > 0
           }
           errorMessage={
             errors?.login_email?.type === "required" &&
@@ -96,7 +101,7 @@ export default function LoginModal() {
           }
           isInvalid={
             errors?.login_password?.type === "required" ||
-            errorMessage.length > 0
+            errorMessage?.length > 0
           }
           errorMessage={
             errors?.login_password?.type === "required" &&
@@ -104,12 +109,18 @@ export default function LoginModal() {
           }
           {...register("login_password", { required: true })}
         />
-        <p id="login_error" className="text-base text-center text-danger">
+        <p
+          id="login_error"
+          className={`text-base text-center text-danger ${
+            errorMessage ? "" : "invisible"
+          }`}
+        >
           {errorMessage}
         </p>
         <Button
           type="submit"
           className="w-full bg-black text-base text-white mt-3 mb-4"
+          isDisabled={loading}
         >
           Ingresar
         </Button>

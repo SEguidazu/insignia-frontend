@@ -29,8 +29,6 @@ export const useUserStore = create()(
           },
         })),
       setUserLoggedOut: () => set((state) => ({ user: initialState })),
-      // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-      // removeAllBears: () => set({ bears: 0 }),
     }),
     { name: "auth" }
   )

@@ -11,6 +11,15 @@ export const getFeaturedProducts = async () => {
     .catch((e) => console.error("[ERROR_FEATURED_PRODUCTS]", e));
 };
 
+export const getProductBySlug = async (slug) => {
+  return await axiosConfig
+    .get(
+      `/products?filters[slug][$eq]=${slug}&populate=images,category,subcategory`
+    )
+    .then((response) => response.data)
+    .catch((e) => console.error("[ERROR_PRODUCT_BY_SLUG]", e));
+};
+
 export const getProducts = async (searchParams) => {
   const page = searchParams["page"] ?? 1;
   const filters = Object.entries(searchParams)?.reduce((acc, [key, value]) => {

@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useCartStore } from "@/app/store/cart";
-
 import {
   Modal,
   ModalContent,
@@ -10,29 +7,18 @@ import {
   ModalBody,
   useDisclosure,
   Image,
-  ButtonGroup,
-  Button,
 } from "@nextui-org/react";
+
 import AddCartButton from "@/app/components/AddCartButton";
+import OpenModalButton from "./OpenModalButton";
 
 export default function AddCartModal({ product }) {
-  const [qty, setQty] = useState(1);
-  const addProduct = useCartStore((state) => state.addProduct);
-  const getProductQtyInCart = useCartStore(
-    (state) => state.getProductQtyInCart
-  );
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const handleClose = () => {
-    setQty(1);
-    onClose();
-  };
 
   return (
     <>
-      <AddCartButton onPress={onOpen} />
-      <Modal size="3xl" backdrop="blur" isOpen={isOpen} onClose={handleClose}>
+      <OpenModalButton onPress={onOpen} isDisabled={product.stock === 0} />
+      <Modal size="3xl" backdrop="blur" isOpen={isOpen} onClose={onClose}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -58,39 +44,7 @@ export default function AddCartModal({ product }) {
                   </span>
                 </div>
                 <div className="inline-flex items-center">
-                  <ButtonGroup>
-                    <Button
-                      className="min-w-0 w-10 text-xl text-black border-r-0 border-black"
-                      variant="bordered"
-                      onPress={(e) => {
-                        if (qty > 1) setQty(qty - 1);
-                      }}
-                    >
-                      -
-                    </Button>
-                    <span className="w-10 h-10 text-lg text-black text-center leading-[2.2] border-y-2 border-black">
-                      {qty}
-                    </span>
-
-                    <Button
-                      className="min-w-0 w-10 text-lg text-black border-l-0 border-black"
-                      variant="bordered"
-                      onPress={(e) => {
-                        setQty(qty + 1);
-                      }}
-                      isDisabled={
-                        product.stock === qty + getProductQtyInCart(product)
-                      }
-                    >
-                      +
-                    </Button>
-                  </ButtonGroup>
-                  <Button
-                    className="w-40 bg-black text-base text-white ml-5"
-                    onPress={(e) => addProduct(product, qty)}
-                  >
-                    Añadir al carrito
-                  </Button>
+                  <AddCartButton product={product} hasQtyHandler />
                   <button
                     className="text-base text-black ml-14 underline underline-offset-2"
                     onClick={onClose}

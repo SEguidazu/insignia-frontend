@@ -22,7 +22,7 @@ export default function MiniCartProduct(product) {
             alt=""
           />
         ) : (
-          <div className="h-[84px] rounded-lg bg-black"></div>
+          <div className="h-[84px] rounded-lg bg-black" tabIndex={-1} />
         )}
         <div className="w-full flex flex-col justify-between items-start py-1">
           <p className="text-sm text-main">{product.name}</p>

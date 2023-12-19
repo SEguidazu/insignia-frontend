@@ -23,7 +23,7 @@ export default async function StorePage({ searchParams }) {
           className="max-w-3xl basis-3/4 grid grid-cols-3 grid-rows-10 gap-5 justify-items-center items-start"
         >
           {response?.results?.map((product) => (
-            <ProductCard key={product.product_id} {...product} />
+            <ProductCard key={product.product_id} product={product} />
           ))}
         </section>
       )}

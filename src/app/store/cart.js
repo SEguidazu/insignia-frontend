@@ -94,6 +94,23 @@ function getProductQtyInCart(get, product) {
   return cart[indexInCart].qty;
 }
 
+function getMessageToSend(get) {
+  const { cart, total } = get();
+
+  const cartBody = cart?.map(
+    (item) =>
+      `${item?.qty} x *${item?.name}* [_${item?.product_id ?? item?.id}_]`
+  );
+
+  const body = encodeURIComponent(
+    `Hola Insignia! Mi pedido es:\n\n${cartBody?.join(
+      "\n"
+    )}\n\nSubtotal: *$${total}*`
+  );
+
+  return body;
+}
+
 export const useCartStore = create(
   devtools(
     persist(
@@ -110,6 +127,7 @@ export const useCartStore = create(
           }));
         },
         getProductQtyInCart: (product) => getProductQtyInCart(get, product),
+        getMessageToSend: () => getMessageToSend(get),
       }),
       { name: "cart" }
     )

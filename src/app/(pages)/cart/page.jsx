@@ -10,8 +10,11 @@ import Image from "next/image";
 
 import Whatsapp from "@/assets/whatsapp.png";
 
+const WhatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
 export default function CartPage() {
   const total = useStore(useCartStore, (state) => state.total);
+  const getMessageToSend = useCartStore((state) => state.getMessageToSend);
 
   return (
     <>
@@ -26,12 +29,12 @@ export default function CartPage() {
           </span>
         </div>
         <Button
-          href="https://google.com"
+          href={`https://wa.me/${WhatsappNumber}?text=${getMessageToSend()}`}
           as={Link}
+          target="_blank"
           variant="solid"
           size="lg"
           className=" text-white text-xl bg-wpps_bg"
-          target="_blank"
         >
           <Image src={Whatsapp} alt="" width={20} height={20} />
           Finalizar compra en WhatsApp

@@ -5,6 +5,7 @@ import { getRefundPolicy, getShippingPolicy } from "@/app/lib/policies";
 
 import ProductImageGallery from "@/app/components/ProductImageGallery";
 import AddCartButton from "@/app/components/AddCartButton";
+import AddFavoriteButton from "@/app/components/AddFavoriteButton";
 import InfoModal from "@/app/components/InformationSection/InfoModal";
 
 export default async function ProductPage({ params }) {
@@ -14,6 +15,9 @@ export default async function ProductPage({ params }) {
 
   if (!response?.results) return <></>;
   const product = response.results[0];
+
+  if (product?.category) delete product.category;
+  if (product?.subcategory) delete product.subcategory;
 
   return (
     <div className="w-full grid grid-cols-2 grid-rows-2 gap-x-8 gap-y-16">
@@ -29,8 +33,12 @@ export default async function ProductPage({ params }) {
         <span className="text-5xl text-main font-medium mb-8">
           ${product.price}
         </span>
-        <div className="mb-10">
+        <div className="mb-4">
           <AddCartButton product={product} hasQtyHandler />
+        </div>
+
+        <div className="mb-10">
+          <AddFavoriteButton product={product} />
         </div>
 
         {shippingPolicy && (

@@ -1,16 +1,28 @@
 import axiosConfig from "@/app/lib/config";
-import { LoginError, RegistrationError } from "@/app/errors";
+import { LoginError, RegistrationError, UpdateUserError } from "@/app/errors";
 
 export const loginStrapi = async ({ identifier, password }) => {
-  return await axiosConfig
-    .post("/auth/local", { identifier, password })
-    .then((response) => response.data)
-    .catch(({ response }) => {
-      throw new LoginError(
-        response.data.error.message,
-        response.data.error.details
-      );
+  try {
+    const { data } = await axiosConfig.post("/auth/local", {
+      identifier,
+      password,
     });
+
+    axiosConfig.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${data?.jwt}`;
+
+    const { data: user } = await axiosConfig.get(
+      "/users/me?populate=address,favorite_products"
+    );
+
+    return { user, jwt: data?.jwt };
+  } catch (error) {
+    throw new LoginError(
+      error?.response.data.error.message,
+      error?.response.data.error.details
+    );
+  }
 };
 
 export const registerUserStrapi = async (values) => {
@@ -30,6 +42,21 @@ export const registerUserStrapi = async (values) => {
     });
 };
 
+export const updateUserStrapi = async (values, jwt) => {
+  try {
+    axiosConfig.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+    const { data } = await axiosConfig.put("/user/me", { ...values });
+
+    return data;
+  } catch (error) {
+    throw new UpdateUserError(
+      error?.response.data.error.message,
+      error?.response.data.error.details
+    );
+  }
+};
+
 const modelRegisterValues = (values) => {
   return {
     username: values.username,
@@ -37,7 +64,7 @@ const modelRegisterValues = (values) => {
     fullname: values.fullname,
     email: values.email,
     whatsapp: values.whatsapp,
-    addresses: {
+    address: {
       street: values.street,
       number: values.number,
       city: values.city,

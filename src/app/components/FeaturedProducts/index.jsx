@@ -26,7 +26,7 @@ export default async function FeaturedProducts({
         >
           {response?.results?.map((product) => (
             <li key={product.product_id} className="snap-center">
-              <ProductCard {...product} />
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>

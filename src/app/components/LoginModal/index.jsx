@@ -33,12 +33,12 @@ export default function LoginModal() {
   const handleLogin = async (formData) => {
     try {
       setLoading(true);
-      const user = await loginStrapi({
+      const data = await loginStrapi({
         identifier: formData.login_email,
         password: formData.login_password,
       });
 
-      if (user) setUserLoggedIn(user);
+      if (data) setUserLoggedIn(data);
     } catch (error) {
       console.error(error);
       setErrorMessage("El email o la contraseña son invalidos.");

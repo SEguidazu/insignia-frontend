@@ -17,7 +17,6 @@ import LoginModal from "@/app/components/LoginModal";
 import {
   BoxedCheckIconLight,
   HeartIconLight,
-  ToolsIconLight,
   UserIconDark,
   UserIconLight,
 } from "@/assets/icons";
@@ -36,7 +35,7 @@ export default function ProfilePopover() {
       <PopoverContent className="w-72 px-2 py-5">
         <div className="w-full flex justify-between px-4 mb-2">
           <p className="text-base text-secondary_link italic capitalize">
-            Hola {user.name}
+            Hola {user.fullname}
           </p>
           <button
             className="text-base text-danger"
@@ -48,9 +47,9 @@ export default function ProfilePopover() {
         <Listbox aria-label="Mi perfil">
           <ListboxItem
             className="text-base text-main"
-            key="perfil"
+            key="datos"
             as={Link}
-            href="/perfil"
+            href="/perfil/datos"
             startContent={<UserIconLight />}
           >
             Mis datos
@@ -59,7 +58,7 @@ export default function ProfilePopover() {
             className="text-base text-main"
             key="compras"
             as={Link}
-            href="/compras"
+            href="/perfil/compras"
             startContent={<BoxedCheckIconLight />}
           >
             Mis compras y pedidos
@@ -68,19 +67,10 @@ export default function ProfilePopover() {
             className="text-base text-main"
             key="favoritos"
             as={Link}
-            href="/favoritos"
+            href="/perfil/favoritos"
             startContent={<HeartIconLight />}
           >
             Favoritos
-          </ListboxItem>
-          <ListboxItem
-            className="text-base text-main"
-            key="configuracion"
-            as={Link}
-            href="/configuracion"
-            startContent={<ToolsIconLight />}
-          >
-            Configuración
           </ListboxItem>
         </Listbox>
       </PopoverContent>

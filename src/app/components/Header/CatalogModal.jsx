@@ -22,8 +22,18 @@ export default function CatalogModal({ catalogMenu = [] }) {
 
   const onPressHandler = (event) => {
     const slugs = event.target.getAttribute("data-path");
+    const [, category, subcategory] = slugs.split("/");
 
-    router.push(`/categoria/${slugs}`);
+    if (!!category) {
+      if (!!subcategory) {
+        router.push(`/store?category=${category}&subcategory=${subcategory}`);
+      } else {
+        router.push(`/store?category=${category}`);
+      }
+    } else {
+      router.push(`/store`);
+    }
+
     onOpenChange();
   };
 

@@ -19,7 +19,7 @@ export default function ProductCard({
         <picture className="relative">
           {!!product.images ? (
             <Image
-              src={`http://127.0.0.1:1337${product.images[0].url}`}
+              src={`${product.images[0].url}`}
               width={180}
               height={180}
               className="h-[180px] rounded-lg object-cover mx-auto mb-6"

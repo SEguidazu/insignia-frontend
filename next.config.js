@@ -11,8 +11,8 @@ const nextConfig = {
         hostname: "44.212.38.42",
       },
       {
-        protocol: "http",
-        hostname: "bucket-lvplz6.s3.us-east-1.amazonaws.com",
+        protocol: "https",
+        hostname: "strapi-insignia-media.s3.us-east-1.amazonaws.com",
       },
     ],
   },

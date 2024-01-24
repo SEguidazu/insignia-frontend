@@ -1,10 +1,25 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
 
 export default function NavCategories({ catalogMenu = [] }) {
+  const router = useRouter();
+
   const onPressHandler = (event) => {
-    console.log(event.target.getAttribute("data-path"));
+    const slugs = event.target.getAttribute("data-path");
+    const [, category, subcategory] = slugs.split("/");
+
+    if (!!category) {
+      if (!!subcategory) {
+        router.push(`/store?category=${category}&subcategory=${subcategory}`);
+      } else {
+        router.push(`/store?category=${category}`);
+      }
+    } else {
+      router.push(`/store`);
+    }
   };
 
   return (

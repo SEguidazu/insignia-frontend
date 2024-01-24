@@ -20,7 +20,7 @@ export default function InformationSection() {
       </article>
       <InfoModal
         title="¿Quiénes somos?"
-        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
+        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
         modalContent={
           <>
             <p>
@@ -48,7 +48,7 @@ export default function InformationSection() {
       </InfoModal>
       <InfoModal
         title="Preguntas frecuentes"
-        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-main_bgcolor drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
+        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
         modalContent={
           <>
             <p>

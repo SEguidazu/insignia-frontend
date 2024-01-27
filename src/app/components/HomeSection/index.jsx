@@ -28,7 +28,7 @@ export default async function HomeSection() {
                 >
                   {image && (
                     <Image
-                      src={`${image.url}`}
+                      src={`http://127.0.0.1:1337${image.url}`}
                       width={136}
                       height={136}
                       alt={name}

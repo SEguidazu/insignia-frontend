@@ -15,7 +15,7 @@ export default function MiniCartProduct(product) {
       <article className="w-full grid grid-cols-[84px_1fr] grid-rows-1 gap-5 mb-3">
         {!!product.images ? (
           <Image
-            src={`${product.images[0].url}`}
+            src={`http://127.0.0.1:1337${product.images[0].url}`}
             width={84}
             height={84}
             className="h-[84px] rounded-lg object-cover"

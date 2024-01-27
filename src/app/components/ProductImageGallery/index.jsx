@@ -16,7 +16,7 @@ export default function ProductImageGallery({ images = [] }) {
       <div className="flex flex-row-reverse" tabIndex={-1}>
         <figure className="basis-4/5 inline-flex justify-center items-center">
           <Image
-            src={`${
+            src={`http://127.0.0.1:1337${
               images[selectedImage].formats?.large.url ??
               images[selectedImage].url
             }`}
@@ -31,7 +31,9 @@ export default function ProductImageGallery({ images = [] }) {
             <li key={image.id}>
               <Image
                 key={image.id}
-                src={`${image.formats?.thumbnail.url ?? image.url}`}
+                src={`http://127.0.0.1:1337${
+                  image.formats?.thumbnail.url ?? image.url
+                }`}
                 alt=""
                 width={100}
                 height={100}

@@ -29,7 +29,7 @@ export default function AddCartModal({ product }) {
                 <div className="h-[160px] rounded-lg bg-black row-span-2">
                   {!!product.images && (
                     <Image
-                      src={`${product.images[0].url}`}
+                      src={`http://127.0.0.1:1337${product.images[0].url}`}
                       width={160}
                       height={160}
                       className="h-[160px] rounded-lg object-cover row-span-2"

@@ -12,6 +12,8 @@ import {
 import AddCartButton from "@/app/components/AddCartButton";
 import OpenModalButton from "./OpenModalButton";
 
+import { formatNumber } from "@/app/utils/formatNumbers";
+
 export default function AddCartModal({ product }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -40,7 +42,7 @@ export default function AddCartModal({ product }) {
                 <div>
                   <h3 className="text-base text-main mb-3">{product.name}</h3>
                   <span className="text-lg text-main font-bold">
-                    ${product.price}.-
+                    ${formatNumber(product.price)}.-
                   </span>
                 </div>
                 <div className="inline-flex items-center">

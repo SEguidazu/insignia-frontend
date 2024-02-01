@@ -1,8 +1,12 @@
 "use client";
 
 import { useCartStore } from "@/app/store/cart";
+
 import Image from "next/image";
+
 import { Button, ButtonGroup } from "@nextui-org/react";
+
+import { formatNumber } from "@/app/utils/formatNumbers";
 
 export default function ProductRow(product) {
   const addProduct = useCartStore((state) => state.addProduct);
@@ -42,7 +46,7 @@ export default function ProductRow(product) {
         </td>
         <td>
           <span className="text-lg text-main font-medium">
-            ${product?.price}
+            ${formatNumber(product?.price)}
           </span>
         </td>
         <td>
@@ -71,7 +75,7 @@ export default function ProductRow(product) {
         </td>
         <td>
           <span className="text-xl text-main font-medium">
-            ${product.price * product.qty}
+            ${formatNumber(product.price * product.qty)}
           </span>
         </td>
       </tr>

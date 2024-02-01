@@ -8,6 +8,8 @@ import AddCartButton from "@/app/components/AddCartButton";
 import AddFavoriteButton from "@/app/components/AddFavoriteButton";
 import InfoModal from "@/app/components/InformationSection/InfoModal";
 
+import { formatNumber } from "@/app/utils/formatNumbers";
+
 export default async function ProductPage({ params }) {
   const response = await getProductBySlug(params.slug);
   const refundPolicy = await getRefundPolicy();
@@ -31,7 +33,7 @@ export default async function ProductPage({ params }) {
       >
         <h1 className="text-3xl text-main mb-6 font-medium">{product.name}</h1>
         <span className="text-5xl text-main font-medium mb-8">
-          ${product.price}
+          ${formatNumber(product.price)}
         </span>
         <div className="mb-4">
           <AddCartButton product={product} hasQtyHandler />

@@ -6,6 +6,8 @@ import Image from "next/image";
 
 import { Button, ButtonGroup } from "@nextui-org/react";
 
+import { formatNumber } from "@/app/utils/formatNumbers";
+
 export default function MiniCartProduct(product) {
   const addProduct = useCartStore((state) => state.addProduct);
   const removeProduct = useCartStore((state) => state.removeProduct);
@@ -27,7 +29,9 @@ export default function MiniCartProduct(product) {
         <div className="w-full flex flex-col justify-between items-start py-1">
           <p className="text-sm text-main">{product.name}</p>
           <div className="w-full flex flex-row justify-between items-center">
-            <p className="text-lg text-main font-bold">${product.price}.-</p>
+            <p className="text-lg text-main font-bold">
+              ${formatNumber(product.price)}.-
+            </p>
             <ButtonGroup>
               <Button
                 className="min-w-0 w-8 h-8 text-xl text-black border-r-0 border-black"

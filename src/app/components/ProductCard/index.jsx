@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { Button } from "@nextui-org/react";
 import Label from "@/app/components/Label";
 import AddCartModal from "@/app/components/AddCartModal";
 
-import { Button } from "@nextui-org/react";
 import { HeartIconLight } from "@/assets/icons";
+
+import { formatNumber } from "@/app/utils/formatNumbers";
 
 export default function ProductCard({
   product,
@@ -37,7 +40,9 @@ export default function ProductCard({
             </Label>
           )}
         </picture>
-        <p className="text-lg font-old leading-4 mb-2">${product?.price}</p>
+        <p className="text-lg font-old leading-4 mb-2">
+          ${formatNumber(product?.price)}
+        </p>
         <h3 className="text-md text-main mb-8">{product?.name}</h3>
       </Link>
       {haveFavoriteButton && (

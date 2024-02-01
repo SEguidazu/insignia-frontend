@@ -4,17 +4,10 @@ import { useCartStore } from "@/app/store/cart";
 import useStore from "@/app/hook/useStore";
 
 import CartDetails from "@/app/components/CartDetails";
-import { Button } from "@nextui-org/react";
-import Link from "next/link";
-import Image from "next/image";
-
-import Whatsapp from "@/assets/whatsapp.png";
-
-const WhatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+import CheckoutButton from "@/app/components/CheckoutButton";
 
 export default function CartPage() {
   const total = useStore(useCartStore, (state) => state.total);
-  const getMessageToSend = useCartStore((state) => state.getMessageToSend);
 
   return (
     <>
@@ -28,17 +21,7 @@ export default function CartPage() {
             Impuestos y costos de envío serán añadidas luego
           </span>
         </div>
-        <Button
-          href={`https://wa.me/${WhatsappNumber}?text=${getMessageToSend()}`}
-          as={Link}
-          target="_blank"
-          variant="solid"
-          size="lg"
-          className=" text-white text-xl bg-wpps_bg"
-        >
-          <Image src={Whatsapp} alt="" width={20} height={20} />
-          Finalizar compra en WhatsApp
-        </Button>
+        <CheckoutButton />
       </div>
     </>
   );

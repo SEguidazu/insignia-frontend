@@ -18,3 +18,10 @@ export class RegistrationError extends Error {
     this.name = "RegisterError";
   }
 }
+
+export class OrderError extends Error {
+  constructor(message, details) {
+    super(message, details);
+    this.name = "OrderError";
+  }
+}

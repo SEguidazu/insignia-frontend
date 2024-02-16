@@ -14,7 +14,6 @@ const initialState = {
 };
 
 function setUserLoggedIn(set, user, jwt) {
-  console.log("USER: ", user);
   set((state) => ({
     user: {
       ...state.user,

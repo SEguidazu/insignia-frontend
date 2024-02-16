@@ -19,8 +19,8 @@ export const loginStrapi = async ({ identifier, password }) => {
     return { user, jwt: data?.jwt };
   } catch (error) {
     throw new LoginError(
-      error?.response.data.error.message,
-      error?.response.data.error.details
+      error?.response?.data.error.message,
+      error?.response?.data.error.details
     );
   }
 };

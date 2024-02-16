@@ -1,4 +1,5 @@
 export function formatNumber(value) {
+  if (!value) return "0";
   let str = value.toString();
 
   let partes = str.split(".");
@@ -11,6 +12,10 @@ export function formatNumber(value) {
 
   if (partes[1].length < 2) {
     partes[1] += "0";
+  }
+
+  if (partes[1].length > 2) {
+    partes[1] = partes[1].slice(0, 2);
   }
 
   return partes.join(",");

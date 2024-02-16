@@ -17,7 +17,7 @@ export const createOrder = async (values) => {
 };
 
 const modelOrderValues = (values) => {
-  const { user, cart, total } = values;
+  const { user, cart, total, payment_data } = values;
   let body = {};
 
   if (user.id) {
@@ -39,6 +39,13 @@ const modelOrderValues = (values) => {
       ...body,
       description,
       products,
+    };
+  }
+
+  if (payment_data) {
+    body = {
+      ...body,
+      ...payment_data,
     };
   }
 

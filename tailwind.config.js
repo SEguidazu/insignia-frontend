@@ -36,6 +36,7 @@ module.exports = {
             gray: "#CCCCCC",
             success: "#2CB708",
             failure: "#FF0101",
+            mp_main: "#009EE3",
           },
         },
       },

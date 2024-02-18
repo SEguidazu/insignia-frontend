@@ -4,7 +4,7 @@ export const getCatalogMenu = async () => {
   return await axiosConfig
     .get("/navigation/render/1?type=TREE")
     .then((response) => response.data)
-    .catch((e) => console.error("[ERROR_CATALOG_MENU]", e.cause));
+    .catch((e) => console.error("[ERROR_CATALOG_MENU]", e));
 };
 
 export const getCategories = async ({ withImages = false }) => {
@@ -12,7 +12,7 @@ export const getCategories = async ({ withImages = false }) => {
   return await axiosConfig
     .get(`/categories${params}`)
     .then((response) => response.data)
-    .catch((e) => console.error("[ERROR_CATEGORIES]", e.cause));
+    .catch((e) => console.error("[ERROR_CATEGORIES]", e));
 };
 
 export const getFilters = async () => {
@@ -30,5 +30,5 @@ export const getFilters = async () => {
           : { status: result.status }
       )
     )
-    .catch((e) => console.error("[ERROR_FILTERS]", e.cause));
+    .catch((e) => console.error("[ERROR_FILTERS]", e));
 };

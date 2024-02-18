@@ -5,13 +5,14 @@ export const createOrder = async (values) => {
   try {
     const body = modelOrderValues(values);
 
-    const { data } = await axiosConfig.post("/orders", { ...body });
+    const data = await axiosConfig.post("/orders", { ...body });
 
     return data;
   } catch (error) {
+    console.error("[CREATE_ORDER]:", error);
     throw new OrderError(
-      error?.response.data.error.message,
-      error?.response.data.error.details
+      error?.response?.data.error.message,
+      error?.response?.data.error.details
     );
   }
 };
@@ -20,7 +21,7 @@ const modelOrderValues = (values) => {
   const { user, cart, total, payment_data } = values;
   let body = {};
 
-  if (user.id) {
+  if (user?.id) {
     body = { ...body, users_permissions_user: { id: user.id } };
   }
 

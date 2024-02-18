@@ -56,9 +56,5 @@ export default function MercadoPagoButton({ products, user }) {
     );
   }, [preferenceId]);
 
-  return !loading ? (
-    WalletComponent
-  ) : (
-    <Spinner size="sm" className="ml-2 mb-1" />
-  );
+  return WalletComponent;
 }

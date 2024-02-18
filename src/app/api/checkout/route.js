@@ -6,7 +6,7 @@ const NEXT_URL = process.env.NEXT_URL;
 const MP_NOTIFY_URL = process.env.MP_NOTIFY_URL;
 
 export async function POST(req) {
-  const { products, payer } = await req.json();
+  const { products, payerId } = await req.json();
 
   try {
     const preference = new Preference(client);
@@ -21,7 +21,7 @@ export async function POST(req) {
         },
         notification_url: `https://${MP_NOTIFY_URL}`,
         metadata: {
-          strapi_user: payer,
+          strapi_user_id: payerId,
         },
       },
     });

@@ -9,12 +9,31 @@ export function modelBody({ products, user }) {
   }));
 
   if (!user?.id) return { products: mappedProducts, payer: undefined };
-  const mappedUser = {
-    id: user.id,
-    fullname: user.fullname,
-    username: user.username,
-    email: user.email,
-  };
 
-  return { products: mappedProducts, payer: mappedUser };
+  return { products: mappedProducts, payerId: user.id };
+}
+
+export function modelStrapiOrder({ userId, products, total }) {
+  let body = {};
+
+  if (userId) body = { ...body, users_permissions_user: { id: userId } };
+
+  if (products && Array.isArray(products)) {
+    const description = products
+      .reduce(
+        (message, { id, title, quantity, unit_price }) =>
+          message.concat(
+            "\n",
+            `ID: _${id}_ **${title}** > Unidades: **${quantity}** > Precio Unitario: **${unit_price}**`
+          ),
+        `# Descripcion de la orden\n`
+      )
+      .concat("\n", `\n## TOTAL: _${total}_`);
+
+    const modelProducts = products.map(({ id }) => ({ id }));
+
+    body = { ...body, description, products: modelProducts };
+  }
+
+  return body;
 }

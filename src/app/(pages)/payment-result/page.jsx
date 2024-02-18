@@ -12,7 +12,7 @@ import { createOrder } from "@/app/lib/orders";
 import { Spinner } from "@nextui-org/react";
 
 export default function PaymentResultPage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const cart = useStore(useCartStore, (state) => state.cart);
   const total = useStore(useCartStore, (state) => state.total);
   const user = useStore(useUserStore, (state) => state.user);
@@ -24,27 +24,24 @@ export default function PaymentResultPage() {
   const merchant_order_id = searchParams.get("merchant_order_id");
 
   useEffect(() => {
-    async function createStrapiOrder() {
-      try {
-        setLoading(true);
-        const payment_data = {
-          payment_id,
-          status,
-          external_reference,
-          merchant_order_id,
-        };
-
-        const order = await createOrder({ user, cart, total, payment_data });
-
-        if (order) console.log(order);
-      } catch (error) {
-        console.error("[CREATE_STRAPI_ORDER]:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    createStrapiOrder();
+    // async function createStrapiOrder() {
+    //   try {
+    //     setLoading(true);
+    //     const payment_data = {
+    //       payment_id,
+    //       status,
+    //       external_reference,
+    //       merchant_order_id,
+    //     };
+    //     const order = await createOrder({ user, cart, total, payment_data });
+    //     if (order) console.log(order);
+    //   } catch (error) {
+    //     console.error("[CREATE_STRAPI_ORDER]:", error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
+    // createStrapiOrder();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

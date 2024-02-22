@@ -7,14 +7,6 @@ import axiosConfig from "@/app/lib/config";
 import { modelStrapiOrder } from "@/app/utils/mercadopago";
 
 export async function POST(req) {
-  const headersList = headers();
-  const xSign = headersList
-    .get("x-signature")
-    ?.split(",")
-    ?.map((item) => item.split("="));
-
-  if (!xSign) return NextResponse.json("Unauthorized", { status: 401 });
-
   const searchParams = req.nextUrl.searchParams;
 
   const body = await req.json();

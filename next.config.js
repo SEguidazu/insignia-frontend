@@ -27,6 +27,8 @@ const nextConfig = {
     MP_ACCESS_TOKEN:
       "TEST-946760120223851-021813-7c799c97063e706fadf745b149713ae6-1444066948",
     // MP_NOTIFY_URL: "insignia-frontend.vercel.app/api/notify",
+    MP_NOTIFY_URL:
+      "insignia-frontend-git-develop-eguidazusan.vercel.app/api/notify",
     MP_WEBHOOKS_KEY:
       "ac15d6fbc8acf3f5a3ff52d891111164a4dab513cece4ec1251378b4680f0036",
 

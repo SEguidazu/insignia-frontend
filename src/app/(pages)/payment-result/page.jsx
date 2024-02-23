@@ -23,6 +23,8 @@ export default function PaymentResultPage() {
   const external_reference = searchParams.get("external_reference");
   const merchant_order_id = searchParams.get("merchant_order_id");
 
+  // payment-result?collection_id=1317118752&collection_status=in_process&payment_id=1317118752&status=in_process&external_reference=null&payment_type=credit_card&merchant_order_id=16054494226&preference_id=1444066948-1b9e0ca2-751d-4da2-920f-a3635ea172a8&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
+
   useEffect(() => {
     // async function createStrapiOrder() {
     //   try {

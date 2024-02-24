@@ -61,6 +61,7 @@ export default function PaymentResultPage() {
 
   const PaymentIcon = useMemo(() => {
     if (
+      status === "pending" ||
       status === "in_process" ||
       status === "in_mediation" ||
       status === "charged_back"

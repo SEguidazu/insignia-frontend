@@ -34,6 +34,7 @@ export async function POST(req) {
       const response = await axiosConfig.post("/orders", {
         data: {
           ...strapiBody,
+          order_qty: products?.map(({ id, quantity }) => ({ id, quantity })),
           payment_id,
           order_id_mp,
           status,

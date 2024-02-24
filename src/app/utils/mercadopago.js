@@ -1,5 +1,3 @@
-import { SuccessIcon, FailureIcon, WarningIcon } from "@/assets/icons";
-
 export function modelBody({ products, user }) {
   const mappedProducts = products?.map((product) => ({
     id: product.id,

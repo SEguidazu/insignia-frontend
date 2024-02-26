@@ -3,6 +3,7 @@ import qs from "qs";
 
 const slugFilters = ["category", "subcategory"];
 const simpleFilters = ["genero"];
+const nameFilter = "name";
 
 export const getFeaturedProducts = async () => {
   return await axiosConfig
@@ -43,6 +44,16 @@ export const getProducts = async (searchParams) => {
           },
         },
       ];
+    if (nameFilter === key)
+      return [
+        ...acc,
+        {
+          [key]: {
+            $containsi: value,
+          },
+        },
+      ];
+
     return acc;
   }, []);
 

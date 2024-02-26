@@ -1,19 +1,24 @@
 "use client";
+
 import React from "react";
+import { useRouter } from "next/navigation";
+
 import { Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons";
 
 function Search() {
   const [search, setSearch] = React.useState("");
+  const router = useRouter();
 
   const handleInputChange = (event) => {
     setSearch(event.target.value);
   };
 
-  // TODO: Realizar el funcionamiento del buscador
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.search.value);
+    setSearch(search.trim());
+    if (search.trim().length > 0)
+      router.push(`/store?name=${encodeURIComponent(search.trim())}`);
   };
 
   return (

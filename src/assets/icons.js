@@ -317,25 +317,20 @@ export const SearchIcon = () => (
   </svg>
 );
 
-export const ArrowRightIcon = () => (
+export const ArrowRightIcon = (props) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
-    viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
-    <g clipPath="url(#clip0_2041_1283)">
+    <g clipPath="url(#a)">
       <path
-        d="M8.58984 16.59L13.1698 12L8.58984 7.41L9.99984 6L15.9998 12L9.99984 18L8.58984 16.59Z"
-        fill="black"
+        fill="#000"
+        d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41Z"
       />
     </g>
-    <defs>
-      <clipPath id="clip0_2041_1283">
-        <rect width="24" height="24" fill="white" />
-      </clipPath>
-    </defs>
   </svg>
 );
 
@@ -484,5 +479,27 @@ export const WarningIcon = (props) => (
       d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm11-4a1 1 0 1 0-2 0v5a1 1 0 1 0 2 0V8Zm-1 7a1 1 0 1 0 0 2 1 1 0 1 0 0-2Z"
       clipRule="evenodd"
     />
+  </svg>
+);
+
+export const LoggedOutIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    {...props}
+  >
+    <g clipPath="url(#a)">
+      <path
+        fill="#FF0101"
+        d="m17 7-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5ZM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5Z"
+      />
+    </g>
+    <defs>
+      <clipPath id="a">
+        <path fill="#fff" d="M0 0h24v24H0z" />
+      </clipPath>
+    </defs>
   </svg>
 );

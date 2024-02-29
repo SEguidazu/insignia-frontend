@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons";
 
-function Search() {
-  const [search, setSearch] = React.useState("");
+function Search({ isTablet }) {
+  const [search, setSearch] = useState("");
   const router = useRouter();
 
   const handleInputChange = (event) => {
@@ -22,7 +22,10 @@ function Search() {
   };
 
   return (
-    <form className="max-w-sm w-full" onSubmit={handleSubmit}>
+    <form
+      className="max-w-sm w-full mx-auto lg:mx-[unset]"
+      onSubmit={handleSubmit}
+    >
       <Input
         id="search-input"
         type="text"
@@ -32,6 +35,7 @@ function Search() {
         variant="bordered"
         radius="sm"
         autoComplete="off"
+        size={!isTablet ? "md" : "sm"}
         endContent={
           <button
             type="submit"

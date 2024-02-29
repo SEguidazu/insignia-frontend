@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import useScreenDetector from "@/app/hook/useScreenSize";
 import {
   Input,
   Modal,
@@ -15,6 +18,7 @@ import { loginStrapi } from "@/app/lib/users";
 import { useUserStore } from "@/app/store/user";
 
 export default function LoginModal() {
+  const { isTablet } = useScreenDetector();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -157,7 +161,9 @@ export default function LoginModal() {
   return (
     <>
       <Button
-        className="min-w-0 w-auto p-3 text-base text-main"
+        className={`min-w-0 p-3 text-base text-main ${
+          isTablet ? "w-full mt-2" : "w-auto"
+        }`}
         onPress={onOpen}
       >
         Ingresar

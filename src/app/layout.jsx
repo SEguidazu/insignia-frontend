@@ -32,6 +32,7 @@ export default async function RootLayout({ children }) {
         <Providers>{children}</Providers>
         <StickyWhatsapp />
         <Footer catalogMenu={catalogMenu} />
+        <div id="react-portal" />
       </body>
     </html>
   );

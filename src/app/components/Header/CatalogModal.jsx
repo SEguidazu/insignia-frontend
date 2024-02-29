@@ -40,11 +40,11 @@ export default function CatalogModal({ catalogMenu = [] }) {
   return (
     <>
       <Button
-        className="bg-white border-black border-2 rounded-lg font-bold"
+        className="h-full bg-transparent lg:h-unit-10 lg:bg-white lg:border-black lg:border-2 lg:rounded-lg font-bold"
         onPress={onOpen}
       >
         <BurgerIcon />
-        Catálogo
+        <span className="hidden lg:inline">Catálogo</span>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className="max-w-3xl w-full">

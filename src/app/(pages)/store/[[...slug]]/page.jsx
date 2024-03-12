@@ -2,12 +2,14 @@ import ProductFilter from "@/app/components/ProductFilter";
 import ProductCard from "@/app/components/ProductCard";
 
 import { getProducts } from "@/app/lib/products";
-import { getFilters } from "@/app/lib/categories";
+import { getCategories } from "@/app/lib/categories";
+import { getSubcategoriesByCategory } from "@/app/lib/subcategories";
 import Paging from "@/app/components/Paging";
 
 export default async function StorePage({ params, searchParams }) {
   const response = await getProducts({ params, searchParams });
-  const filters = await getFilters();
+  const categories = await getCategories();
+  const subcategories = await getSubcategoriesByCategory(params?.slug?.[0]);
 
   return (
     <div className="w-full flex flex-wrap justify-between items-start">
@@ -15,7 +17,10 @@ export default async function StorePage({ params, searchParams }) {
         Productos
       </h1>
 
-      <ProductFilter options={filters} />
+      <ProductFilter
+        categories={categories?.results}
+        subcategories={subcategories.results}
+      />
 
       {response?.results && (
         <section

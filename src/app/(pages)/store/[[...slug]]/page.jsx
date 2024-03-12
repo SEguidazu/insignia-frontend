@@ -5,8 +5,8 @@ import { getProducts } from "@/app/lib/products";
 import { getFilters } from "@/app/lib/categories";
 import Paging from "@/app/components/Paging";
 
-export default async function StorePage({ searchParams }) {
-  const response = await getProducts(searchParams);
+export default async function StorePage({ params, searchParams }) {
+  const response = await getProducts({ params, searchParams });
   const filters = await getFilters();
 
   return (

@@ -1,7 +1,6 @@
 import axiosConfig from "@/app/lib/config";
 import qs from "qs";
 
-const slugFilters = ["category", "subcategory"];
 const simpleFilters = ["genero"];
 const nameFilter = "name";
 
@@ -21,47 +20,50 @@ export const getProductBySlug = async (slug) => {
     .catch((e) => console.error("[ERROR_PRODUCT_BY_SLUG]", e));
 };
 
-export const getProducts = async (searchParams) => {
+export const getProducts = async ({ params, searchParams }) => {
   const page = searchParams["page"] ?? 1;
-  const filters = Object.entries(searchParams)?.reduce((acc, [key, value]) => {
-    if (slugFilters.includes(key))
-      return [
-        ...acc,
-        {
-          [key]: {
-            slug: {
+
+  const filterParams = params?.slug?.slice(0, 2) ?? [];
+
+  const filterCategory = filterParams?.[0]
+    ? [{ category: { slug: { $eq: filterParams[0] } } }]
+    : [];
+
+  const filterSubcategory = filterParams?.[1]
+    ? [{ subcategory: { slug: { $eq: filterParams[1] } } }]
+    : [];
+
+  const filtersQuery = Object.entries(searchParams)?.reduce(
+    (acc, [key, value]) => {
+      if (simpleFilters.includes(key))
+        return [
+          ...acc,
+          {
+            [key]: {
               $in: value?.split(","),
             },
           },
-        },
-      ];
-    if (simpleFilters.includes(key))
-      return [
-        ...acc,
-        {
-          [key]: {
-            $in: value?.split(","),
+        ];
+      if (nameFilter === key)
+        return [
+          ...acc,
+          {
+            [key]: {
+              $containsi: value,
+            },
           },
-        },
-      ];
-    if (nameFilter === key)
-      return [
-        ...acc,
-        {
-          [key]: {
-            $containsi: value,
-          },
-        },
-      ];
+        ];
 
-    return acc;
-  }, []);
+      return acc;
+    },
+    []
+  );
 
   const query = qs.stringify(
     {
       populate: "images,category,subcategory",
       filters: {
-        $and: [...filters],
+        $and: [...filtersQuery, ...filterCategory, ...filterSubcategory],
       },
       pagination: {
         page,

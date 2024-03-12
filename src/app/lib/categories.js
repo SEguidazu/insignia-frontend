@@ -7,8 +7,8 @@ export const getCatalogMenu = async () => {
     .catch((e) => console.error("[ERROR_CATALOG_MENU]", e));
 };
 
-export const getCategories = async ({ withImages = false }) => {
-  const params = withImages ? "?populate=image" : "";
+export const getCategories = async (props) => {
+  const params = !!props?.withImages ? "?populate=image" : "";
   return await axiosConfig
     .get(`/categories${params}`)
     .then((response) => response.data)

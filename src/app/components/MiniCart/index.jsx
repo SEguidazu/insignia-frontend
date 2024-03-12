@@ -47,7 +47,7 @@ export default function MiniCart() {
               ))}
             </section>
             <Button
-              href="/cart"
+              href="/carrito"
               as={Link}
               className="w-full bg-black text-base text-white"
               radius="sm"

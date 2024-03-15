@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import {
   useDisclosure,
   Modal,
@@ -18,24 +16,6 @@ import { BurgerIcon } from "@/assets/icons";
 
 export default function CatalogModal({ catalogMenu = [] }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const router = useRouter();
-
-  const onPressHandler = (event) => {
-    const slugs = event.target.getAttribute("data-path");
-    const [, category, subcategory] = slugs.split("/");
-
-    if (!!category) {
-      if (!!subcategory) {
-        router.push(`/store?category=${category}&subcategory=${subcategory}`);
-      } else {
-        router.push(`/store?category=${category}`);
-      }
-    } else {
-      router.push(`/store`);
-    }
-
-    onOpenChange();
-  };
 
   return (
     <>
@@ -56,7 +36,7 @@ export default function CatalogModal({ catalogMenu = [] }) {
                   id="header-category_list"
                   aria-label="Listado de Categorías"
                 >
-                  {catalogMenu?.map(({ id, title, path, items, ...rest }) => (
+                  {catalogMenu?.map(({ id, title, path, items }) => (
                     <ListboxSection
                       key={id}
                       title={title}
@@ -65,17 +45,15 @@ export default function CatalogModal({ catalogMenu = [] }) {
                       {items.map(({ id, title, path }) => (
                         <ListboxItem
                           key={id}
-                          onPress={onPressHandler}
+                          href={`/store/${path}`}
                           title={title}
                           aria-label={title}
-                          data-path={path}
                         />
                       ))}
                       <ListboxItem
-                        onPress={onPressHandler}
+                        href={`/store/${path}`}
                         title="Ver todos"
                         aria-label="Ver todos"
-                        data-path={path}
                       />
                     </ListboxSection>
                   ))}

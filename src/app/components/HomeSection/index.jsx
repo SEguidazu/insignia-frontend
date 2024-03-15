@@ -23,7 +23,7 @@ export default async function HomeSection() {
                 className="max-w-[180px] w-full rounded-xl bg-light border-1 border-light drop-shadow hover:border-gray hover:drop-shadow-lg ease-out"
               >
                 <Link
-                  href={`/store?category=${slug}`}
+                  href={`/store/${slug}`}
                   className="w-full h-full p-4 pb-2 flex flex-col justify-center items-center gap-2"
                 >
                   {image && (

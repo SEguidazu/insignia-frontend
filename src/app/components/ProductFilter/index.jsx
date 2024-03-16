@@ -11,13 +11,17 @@ import {
   Button,
 } from "@nextui-org/react";
 
-export default function ProductFilter({ categories, subcategories }) {
+export default function ProductFilter({ categories, subcategories, types }) {
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
 
-  const { filterSearchParams, handleFilterSearchParamsChange, pushFilters } =
-    useFiltersQuery();
+  const {
+    filterSearchParams,
+    handleFilterSearchParamsChange,
+    pushFilters,
+    cleanFilters,
+  } = useFiltersQuery();
 
   const handleCategoryChange = (value) => {
     const query =
@@ -101,6 +105,32 @@ export default function ProductFilter({ categories, subcategories }) {
           </RadioGroup>
         </div>
       )}
+      {types?.length > 0 && (
+        <div>
+          <h2 className="text-2xl text-black mb-3 font-medium">Tipos</h2>
+          <CheckboxGroup
+            size="lg"
+            radius="sm"
+            value={
+              filterSearchParams.find((item) => item?.key === "tipo")?.params ??
+              []
+            }
+            onValueChange={handleFilterSearchParamsChange("tipo")}
+            aria-label="Seleccione el tipo de producto con la que desea filtrar"
+          >
+            {types?.map((item) => (
+              <Checkbox
+                key={item?.type_id}
+                value={item?.type_id}
+                size="lg"
+                color="default"
+              >
+                {item?.name}
+              </Checkbox>
+            ))}
+          </CheckboxGroup>
+        </div>
+      )}
       <div>
         <h2 className="text-2xl text-black mb-3 font-medium">Género</h2>
         <CheckboxGroup
@@ -111,12 +141,12 @@ export default function ProductFilter({ categories, subcategories }) {
             []
           }
           onValueChange={handleFilterSearchParamsChange("genero")}
-          aria-label="seleccione genero"
+          aria-label="Seleccione el género con la que desea filtrar"
         >
-          <Checkbox value="hombre" size="lg">
+          <Checkbox value="hombre" size="lg" color="default">
             Hombre
           </Checkbox>
-          <Checkbox value="mujer" size="lg">
+          <Checkbox value="mujer" size="lg" color="default">
             Mujer
           </Checkbox>
         </CheckboxGroup>
@@ -126,6 +156,13 @@ export default function ProductFilter({ categories, subcategories }) {
         onPress={pushFilters}
       >
         Aplicar filtros
+      </Button>
+      <Button
+        className="text-base text-main font-bold "
+        onPress={cleanFilters}
+        variant="ghost"
+      >
+        Limpiar filtros
       </Button>
     </aside>
   );

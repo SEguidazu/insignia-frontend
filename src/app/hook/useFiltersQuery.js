@@ -46,9 +46,15 @@ export default function useFiltersQuery() {
     router.push(`${pathname}${queryRequest}`);
   }, [filterSearchParams, pathname, router]);
 
+  const cleanFilters = useCallback(() => {
+    setFilterSearchParams([]);
+    router.push(pathname);
+  }, [pathname, router]);
+
   return {
     filterSearchParams,
     handleFilterSearchParamsChange,
     pushFilters,
+    cleanFilters,
   };
 }

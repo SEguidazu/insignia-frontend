@@ -1,8 +1,9 @@
 import axiosConfig from "@/app/lib/config";
 import qs from "qs";
 
-const simpleFilters = ["genero"];
-const nameFilter = "name";
+const GENDER_KEY_FILTER = "genero";
+const TYPE_KEY_FILTER = "tipo";
+const NAME_KEY_FILTER = "name";
 
 export const getFeaturedProducts = async () => {
   return await axiosConfig
@@ -20,6 +21,13 @@ export const getProductBySlug = async (slug) => {
     .catch((e) => console.error("[ERROR_PRODUCT_BY_SLUG]", e));
 };
 
+export const getProductTypes = async () => {
+  return await axiosConfig
+    .get(`/types`)
+    .then((response) => response.data)
+    .catch((e) => console.error("[ERROR_PRODUCT_TYPES]", e));
+};
+
 export const getProducts = async ({ params, searchParams }) => {
   const page = searchParams["page"] ?? 1;
 
@@ -35,7 +43,7 @@ export const getProducts = async ({ params, searchParams }) => {
 
   const filtersQuery = Object.entries(searchParams)?.reduce(
     (acc, [key, value]) => {
-      if (simpleFilters.includes(key))
+      if (GENDER_KEY_FILTER === key)
         return [
           ...acc,
           {
@@ -44,7 +52,18 @@ export const getProducts = async ({ params, searchParams }) => {
             },
           },
         ];
-      if (nameFilter === key)
+      if (TYPE_KEY_FILTER === key)
+        return [
+          ...acc,
+          {
+            type: {
+              type_id: {
+                $in: value?.split(","),
+              },
+            },
+          },
+        ];
+      if (NAME_KEY_FILTER === key)
         return [
           ...acc,
           {

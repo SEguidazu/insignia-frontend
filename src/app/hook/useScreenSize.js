@@ -19,11 +19,13 @@ const useScreenDetector = () => {
     };
   }, []);
 
-  const isMobile = width <= 768;
-  const isTablet = width < 1024;
-  const isDesktop = width >= 1024;
+  const isXSscreen = width < 640;
+  const isSMscreen = width >= 640;
+  const isMDscreen = width >= 768;
+  const isLGscreen = width >= 1024;
+  const isXLscreen = width >= 1280;
 
-  return { isMobile, isTablet, isDesktop };
+  return { isXSscreen, isSMscreen, isMDscreen, isLGscreen, isXLscreen };
 };
 
 export default useScreenDetector;

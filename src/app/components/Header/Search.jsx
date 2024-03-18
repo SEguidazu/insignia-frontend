@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons";
 
-function Search({ isTablet }) {
+function Search({ isLGscreen }) {
   const [search, setSearch] = useState("");
   const router = useRouter();
 
@@ -35,7 +35,7 @@ function Search({ isTablet }) {
         variant="bordered"
         radius="sm"
         autoComplete="off"
-        size={!isTablet ? "md" : "sm"}
+        size={isLGscreen ? "md" : "sm"}
         endContent={
           <button
             type="submit"

@@ -18,7 +18,7 @@ import { loginStrapi } from "@/app/lib/users";
 import { useUserStore } from "@/app/store/user";
 
 export default function LoginModal() {
-  const { isTablet } = useScreenDetector();
+  const { isLGscreen } = useScreenDetector();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -162,7 +162,7 @@ export default function LoginModal() {
     <>
       <Button
         className={`min-w-0 p-3 text-base text-main ${
-          isTablet ? "w-full mt-2" : "w-auto"
+          !isLGscreen ? "w-full mt-2" : "w-auto"
         }`}
         onPress={onOpen}
       >

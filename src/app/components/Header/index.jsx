@@ -24,7 +24,7 @@ import MiniCart from "@/app/components/MiniCart";
 import LogoInsignia from "@/assets/LogoInsignia.svg";
 
 export default function Header({ catalogMenu }) {
-  const { isTablet } = useScreenDetector();
+  const { isLGscreen } = useScreenDetector();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [portalContainer, setPortalContainer] = useState(undefined);
 
@@ -37,9 +37,9 @@ export default function Header({ catalogMenu }) {
   return (
     <>
       <Navbar
-        position={!isTablet ? "sticky" : "sticky"}
+        position="sticky"
         className={`bg-secondary ${
-          isTablet ? "pt-4 pb-3 mb-0" : "py-4 shadow-lg mb-9"
+          !isLGscreen ? "pt-4 pb-3 mb-0" : "py-4 shadow-lg mb-9"
         }`}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
@@ -53,9 +53,9 @@ export default function Header({ catalogMenu }) {
 
           <CatalogModal catalogMenu={catalogMenu} />
 
-          <Search isTablet={isTablet} />
+          <Search isLGscreen={isLGscreen} />
           <MiniCart />
-          <ProfilePopover isTablet={isTablet} />
+          <ProfilePopover isLGscreen={isLGscreen} />
         </NavbarContent>
 
         {/* MOBILE */}
@@ -84,16 +84,16 @@ export default function Header({ catalogMenu }) {
         {/* MENU MOBILE */}
         <NavbarMenu portalContainer={portalContainer} className="top-[5.5rem]">
           <NavbarMenuItem>
-            <ProfilePopover isTablet={isTablet} />
+            <ProfilePopover isLGscreen={isLGscreen} />
 
             <CatalogSidebar catalogMenu={catalogMenu} />
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
 
-      {isTablet && (
+      {!isLGscreen && (
         <div className="bg-secondary shadow-lg px-6 pb-2 mb-9">
-          <Search isTablet={isTablet} />
+          <Search isLGscreen={isLGscreen} />
         </div>
       )}
     </>

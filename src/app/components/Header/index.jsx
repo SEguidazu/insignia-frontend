@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import useScreenDetector from "@/app/hook/useScreenSize";
+import useScreenSize from "@/app/hook/useScreenSize";
 
 import {
   Navbar,
@@ -24,7 +24,7 @@ import MiniCart from "@/app/components/MiniCart";
 import LogoInsignia from "@/assets/LogoInsignia.svg";
 
 export default function Header({ catalogMenu }) {
-  const { isLGscreen } = useScreenDetector();
+  const { isLGscreen } = useScreenSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [portalContainer, setPortalContainer] = useState(undefined);
 

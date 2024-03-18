@@ -1,30 +1,29 @@
+"use client";
+
+import useScreenSize from "@/app/hook/useScreenSize";
+
 import ProductCard from "@/app/components/ProductCard";
 
-import { getFeaturedProducts } from "@/app/lib/products";
-
-export default async function FeaturedProducts({
-  title = "Los más vendidos",
-  scrollable = false,
-}) {
-  const response = await getFeaturedProducts();
+export default function FeaturedProducts({ products }) {
+  const { isLGscreen } = useScreenSize();
 
   return (
-    response?.results && (
+    products && (
       <section
         id="featured-products"
         className="flex flex-wrap justify-between items-start gap-5 mb-9"
       >
         <h2 className="w-full text-2xl text-main font-bold shrink-0">
-          {title}
+          Los más vendidos
         </h2>
         <ul
-          className={`w-full justify-items-center items-start gap-5  ${
-            scrollable
-              ? "flex flex-nowrap overflow-x-scroll scroll-smooth snap-x"
+          className={`w-full justify-items-center items-start gap-5 ${
+            !isLGscreen
+              ? "flex flex-nowrap overflow-x-scroll scroll-smooth snap-x shadow-inner"
               : "grid grid-cols-5 grid-rows-2"
           }`}
         >
-          {response?.results?.map((product) => (
+          {products?.map((product) => (
             <li key={product.product_id} className="snap-center">
               <ProductCard product={product} />
             </li>

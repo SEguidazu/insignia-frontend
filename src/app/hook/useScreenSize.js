@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const useScreenDetector = () => {
+const useScreenSize = () => {
   const [width, setWidth] = useState(1024);
 
   const handleWindowSizeChange = () => {
@@ -28,4 +28,4 @@ const useScreenDetector = () => {
   return { isXSscreen, isSMscreen, isMDscreen, isLGscreen, isXLscreen };
 };
 
-export default useScreenDetector;
+export default useScreenSize;

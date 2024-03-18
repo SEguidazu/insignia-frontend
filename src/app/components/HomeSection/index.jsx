@@ -3,12 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import useScreenDetector from "@/app/hook/useScreenSize";
+import useScreenSize from "@/app/hook/useScreenSize";
 
 import { Skeleton } from "@nextui-org/react";
 
 export default function HomeSection({ categories }) {
-  const { isXSscreen } = useScreenDetector;
+  const { isXSscreen } = useScreenSize();
 
   return (
     categories && (

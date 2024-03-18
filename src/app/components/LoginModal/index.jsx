@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import useScreenDetector from "@/app/hook/useScreenSize";
+import useScreenSize from "@/app/hook/useScreenSize";
 import {
   Input,
   Modal,
@@ -18,7 +18,7 @@ import { loginStrapi } from "@/app/lib/users";
 import { useUserStore } from "@/app/store/user";
 
 export default function LoginModal() {
-  const { isLGscreen } = useScreenDetector();
+  const { isLGscreen } = useScreenSize();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);

@@ -7,7 +7,7 @@ import A11ySkip from "@/app/components/A11ySkip";
 import StickyWhatsapp from "@/app/components/StickyWhatsapp";
 import Footer from "@/app/components/Footer";
 
-import { getCatalogMenu } from "@/app/lib/categories";
+import { getCatalogNavigation } from "@/app/lib/categories";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -22,7 +22,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const catalogMenu = await getCatalogMenu();
+  const catalogMenu = await getCatalogNavigation();
 
   return (
     <html lang="en">

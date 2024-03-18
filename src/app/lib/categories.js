@@ -1,10 +1,17 @@
 import axiosConfig from "@/app/lib/config";
 
-export const getCatalogMenu = async () => {
+export const getCatalogNavigation = async () => {
   return await axiosConfig
     .get("/navigation/render/1?type=TREE")
     .then((response) => response.data)
-    .catch((e) => console.error("[ERROR_CATALOG_MENU]", e));
+    .catch((e) => console.error("[ERROR_CATALOG_NAVIGATION]", e));
+};
+
+export const getCategoryNavigation = async () => {
+  return await axiosConfig
+    .get("/categories?filters[is_featured][$eq]=true&populate=image")
+    .then((response) => response.data)
+    .catch((e) => console.error("[ERROR_CATEGORY_NAVIGATION]", e));
 };
 
 export const getCategories = async (props) => {

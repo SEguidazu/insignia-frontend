@@ -1,17 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
-import Truck from "@/assets/Truck.svg";
 import InfoModal from "./InfoModal";
 
 export default function InformationSection() {
   return (
     <section
       id="info-section"
-      className="w-full grid grid-cols-2 grid-rows-[230px] gap-x-5 my-[7rem]"
+      className="w-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 gap-5 my-[7rem]"
     >
       <InfoModal
         title="¿Quiénes somos?"
-        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
+        className="lg:min-h-[230px] min-h-[180px] text-main_hover text-4xl font-medium text-balance rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
         modalContent={
           <>
             <p>
@@ -39,7 +36,7 @@ export default function InformationSection() {
       </InfoModal>
       <InfoModal
         title="Preguntas frecuentes"
-        className="h-full text-main_hover text-4xl font-medium rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
+        className="lg:min-h-[230px] min-h-[180px] text-main_hover text-4xl font-medium text-balance rounded-2xl border-1 border-main_stroke bg-white drop-shadow hover:text-white hover:bg-main_hover hover:drop-shadow-lg ease-out"
         modalContent={
           <>
             <p>

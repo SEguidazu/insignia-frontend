@@ -15,7 +15,7 @@ export default function ProductRow(product) {
           <div className="flex justify-start items-center gap-x-5 ">
             {!!product.picture_url ? (
               <Image
-                src={product.picture_url}
+                src={`${product.picture_url}`}
                 width={80}
                 height={55}
                 className="h-[55px] rounded-lg object-cover"

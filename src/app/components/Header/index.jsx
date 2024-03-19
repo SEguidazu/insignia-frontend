@@ -19,7 +19,8 @@ import CatalogModal from "@/app/components/Header/CatalogModal";
 import CatalogSidebar from "@/app/components/Header/CatalogSidebar";
 import Search from "@/app/components/Header/Search";
 import ProfilePopover from "@/app/components/ProfilePopover";
-import MiniCart from "@/app/components/MiniCart";
+import PopoverCart from "@/app/components/MiniCart/PopoverCart";
+import ModalCart from "@/app/components/MiniCart/ModalCart";
 
 import LogoInsignia from "@/assets/LogoInsignia.svg";
 
@@ -54,7 +55,7 @@ export default function Header({ catalogMenu }) {
           <CatalogModal catalogMenu={catalogMenu} />
 
           <Search isLGscreen={isLGscreen} />
-          <MiniCart />
+          <PopoverCart />
           <ProfilePopover isLGscreen={isLGscreen} />
         </NavbarContent>
 
@@ -77,7 +78,7 @@ export default function Header({ catalogMenu }) {
           </Link>
 
           <div className="flex justify-end items-center">
-            <MiniCart />
+            <ModalCart />
           </div>
         </NavbarContent>
 

@@ -1,20 +1,22 @@
 "use client";
 
+import Link from "next/link";
+
 import { useCartStore } from "@/app/store/cart";
 import useStore from "@/app/hook/useStore";
 
-import Link from "next/link";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   Button,
 } from "@nextui-org/react";
-import MiniCartProduct from "@/app/components/MiniCart/MiniCartProduct";
+
+import MiniCartProduct from "./MiniCartProduct";
 
 import { CartIconDark } from "@/assets/icons";
 
-export default function MiniCart() {
+export default function PopoverCart() {
   const cart = useStore(useCartStore, (state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
 
@@ -25,7 +27,7 @@ export default function MiniCart() {
           <CartIconDark aria-label="Carrito" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-96 px-6 py-5">
+      <PopoverContent className="sm:w-96 w-screen px-6 py-5">
         {cart?.length === 0 ? (
           <p className="text-lg text-main">El carrito esta vacío.</p>
         ) : (
@@ -41,7 +43,7 @@ export default function MiniCart() {
                 Borrar todo
               </button>
             </div>
-            <section className="w-full pb-1 mb-4 border-b-1 border-main_stroke">
+            <section className="w-full max-h-[384px] pb-1 mb-4 border-b-1 border-main_stroke overflow-y-scroll scroll-smooth">
               {cart?.map((item) => (
                 <MiniCartProduct key={item.product_id} {...item} />
               ))}

@@ -24,7 +24,12 @@ export default function InfoModal({
       <Button onPress={onOpen} className={className}>
         {children}
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="3xl">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="3xl"
+        scrollBehavior="inside"
+      >
         <ModalContent>
           {(onClose) => (
             <>

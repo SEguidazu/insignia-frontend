@@ -1,22 +1,38 @@
 import Link from "next/link";
+import Image from "next/image";
+
 import Companies from "@/app/components/Footer/Companies";
 import NavCategories from "@/app/components/Footer/NavCategories";
 import ContactInformation from "@/app/components/Footer/ContactInformation";
+
+import InstagramIcon from "@/assets/InstagramIcon.svg";
 
 export default function Footer({ catalogMenu }) {
   return (
     <footer className="bg-black">
       <Companies />
-      <div className="max-w-7xl grid grid-cols-3 grid-row-2 gap-4 mx-auto pt-14 pb-6 border-b-1 border-main_hover">
-        <div className="col-span-2 row-span-2 pr-14">
+      <div className="xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-xl max-w-sm grid md:grid-cols-3 grid-cols-1 md:grid-row-2 grid-rows-auto gap-4 mx-auto pt-14 pb-6 border-b-1 border-main_hover">
+        <div className="md:col-span-2 md:row-span-2 md:pr-14">
           <NavCategories catalogMenu={catalogMenu} />
         </div>
-        <div>
+        <div className="md:inline flex justify-center">
           <ContactInformation />
         </div>
-        <div></div>
+        <div className="md:inline flex justify-center">
+          <Link
+            href="https://www.instagram.com/insignia_mayorista/"
+            target="_blank"
+            className="inline-flex"
+            aria-label="¡Visita nuestra cuenta de Instagram!"
+          >
+            <Image src={InstagramIcon} alt="" />
+          </Link>
+        </div>
       </div>
-      <div id="subfooter" className="max-w-7xl mx-auto py-8 px-3 text-white">
+      <div
+        id="subfooter"
+        className="xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto py-8 px-3 text-white lg:text-left text-center"
+      >
         <span>
           2023 <Link href="/">joyasinsignia.com.ar</Link>
         </span>

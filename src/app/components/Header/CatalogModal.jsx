@@ -36,7 +36,7 @@ export default function CatalogModal({ catalogMenu = [] }) {
                   id="header-category_list"
                   aria-label="Listado de Categorías"
                 >
-                  {catalogMenu?.map(({ id, title, path, items }) => (
+                  {catalogMenu?.map(({ id, title, path, items = [] }) => (
                     <ListboxSection
                       key={id}
                       title={title}

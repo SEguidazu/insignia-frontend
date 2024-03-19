@@ -13,7 +13,7 @@ export default async function Home() {
   const products = await getFeaturedProducts();
 
   return (
-    <main className="xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto">
+    <main className="xl:max-w-7xl lg:max-w-5xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto px-2">
       <Slider images={!!sliders?.results && sliders?.results[0].images} />
       <HomeSection categories={!!categories?.results && categories.results} />
       <FeaturedProducts products={!!products?.results && products.results} />

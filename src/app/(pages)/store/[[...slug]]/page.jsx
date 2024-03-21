@@ -20,8 +20,8 @@ export default async function StorePage({ params, searchParams }) {
 
       <ProductFilter
         categories={categories?.results}
-        subcategories={subcategories.results}
-        types={types.results}
+        subcategories={subcategories?.results}
+        types={types?.results}
       />
 
       {response?.results && (

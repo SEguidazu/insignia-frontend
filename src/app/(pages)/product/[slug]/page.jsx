@@ -10,6 +10,8 @@ import InfoModal from "@/app/components/InformationSection/InfoModal";
 
 import { formatNumber } from "@/app/utils/formatNumbers";
 
+export const revalidate = 3600; // revalidate the data at most every hour
+
 export default async function ProductPage({ params }) {
   const response = await getProductBySlug(params.slug);
   const refundPolicy = await getRefundPolicy();

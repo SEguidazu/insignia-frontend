@@ -1,13 +1,13 @@
-import axiosConfig from "@/app/lib/config";
+import fetchConfig from "@/app/lib/config";
 import { OrderError } from "@/app/errors";
 
 export const createOrder = async (values) => {
   try {
     const body = modelOrderValues(values);
 
-    const data = await axiosConfig.post("/orders", { ...body });
+    const data = await fetchConfig("/orders", { method: "POST", body });
 
-    return data;
+    return data.json();
   } catch (error) {
     console.error("[CREATE_ORDER]:", error);
     throw new OrderError(

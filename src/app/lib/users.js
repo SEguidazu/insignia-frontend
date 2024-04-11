@@ -1,22 +1,31 @@
-import axiosConfig from "@/app/lib/config";
+import fetchConfig from "@/app/lib/config";
 import { LoginError, RegistrationError, UpdateUserError } from "@/app/errors";
 
 export const loginStrapi = async ({ identifier, password }) => {
   try {
-    const { data } = await axiosConfig.post("/auth/local", {
-      identifier,
-      password,
+    const auth = await fetchConfig("/auth/local", {
+      method: "POST",
+      body: {
+        identifier,
+        password,
+      },
     });
 
-    axiosConfig.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${data?.jwt}`;
+    const { jwt } = auth.json();
 
-    const { data: user } = await axiosConfig.get(
-      "/users/me?populate=address,favorite_products"
+    const response = await fetchConfig(
+      "/users/me?populate=address,favorite_products",
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        method: "GET",
+      }
     );
 
-    return { user, jwt: data?.jwt };
+    const user = response.json();
+
+    return { user, jwt };
   } catch (error) {
     throw new LoginError(
       error?.response?.data.error.message,
@@ -28,12 +37,14 @@ export const loginStrapi = async ({ identifier, password }) => {
 export const registerUserStrapi = async (values) => {
   const formValues = modelRegisterValues(values);
 
-  return await axiosConfig
-    .post("/users", {
+  return await fetchConfig("/users", {
+    method: "POST",
+    body: {
       ...formValues,
       role: 1,
-    })
-    .then((response) => response.data)
+    },
+  })
+    .then((response) => response.json())
     .catch(({ response }) => {
       throw new RegistrationError(
         response.data.error.message,
@@ -44,11 +55,17 @@ export const registerUserStrapi = async (values) => {
 
 export const updateUserStrapi = async (values, jwt) => {
   try {
-    axiosConfig.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+    const response = await fetchConfig("/user/me", {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+      method: "PUT",
+      body: {
+        ...values,
+      },
+    });
 
-    const { data } = await axiosConfig.put("/user/me", { ...values });
-
-    return data;
+    return response.json();
   } catch (error) {
     throw new UpdateUserError(
       error?.response.data.error.message,

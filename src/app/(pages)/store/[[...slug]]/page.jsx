@@ -6,6 +6,8 @@ import { getCategories } from "@/app/lib/categories";
 import { getSubcategoriesByCategory } from "@/app/lib/subcategories";
 import Paging from "@/app/components/Paging";
 
+export const revalidate = 3600; // revalidate the data at most every hour
+
 export default async function StorePage({ params, searchParams }) {
   const response = await getProducts({ params, searchParams });
   const categories = await getCategories();

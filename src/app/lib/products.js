@@ -1,4 +1,4 @@
-import axiosConfig from "@/app/lib/config";
+import fetchConfig from "@/app/lib/config";
 import qs from "qs";
 
 const GENDER_KEY_FILTER = "genero";
@@ -6,25 +6,26 @@ const TYPE_KEY_FILTER = "tipo";
 const NAME_KEY_FILTER = "name";
 
 export const getFeaturedProducts = async () => {
-  return await axiosConfig
-    .get("/products?filters[is_featured][$eq]=true&populate=images")
-    .then((response) => response.data)
+  return await fetchConfig(
+    "/products?filters[is_featured][$eq]=true&populate=images",
+    { method: "GET", cache: "no-store" }
+  )
+    .then((response) => response.json())
     .catch((e) => console.error("[ERROR_FEATURED_PRODUCTS]", e));
 };
 
 export const getProductBySlug = async (slug) => {
-  return await axiosConfig
-    .get(
-      `/products?filters[slug][$eq]=${slug}&populate=images,category,subcategory`
-    )
-    .then((response) => response.data)
+  return await fetchConfig(
+    `/products?filters[slug][$eq]=${slug}&populate=images,category,subcategory`,
+    { method: "GET", cache: "no-store" }
+  )
+    .then((response) => response.json())
     .catch((e) => console.error("[ERROR_PRODUCT_BY_SLUG]", e));
 };
 
 export const getProductTypes = async () => {
-  return await axiosConfig
-    .get(`/types`)
-    .then((response) => response.data)
+  return await fetchConfig("/types", { method: "GET", cache: "no-store" })
+    .then((response) => response.json())
     .catch((e) => console.error("[ERROR_PRODUCT_TYPES]", e));
 };
 
@@ -94,8 +95,10 @@ export const getProducts = async ({ params, searchParams }) => {
     }
   );
 
-  return await axiosConfig
-    .get(`/products?${query}`)
-    .then((response) => response.data)
+  return await fetchConfig(`/products?${query}`, {
+    method: "GET",
+    cache: "no-store",
+  })
+    .then((response) => response.json())
     .catch((e) => console.error("[ERROR_PRODUCTS]", e.cause));
 };

@@ -7,6 +7,8 @@ import { getSlider } from "@/app/lib/sliders";
 import { getCategoryNavigation } from "@/app/lib/categories";
 import { getFeaturedProducts } from "@/app/lib/products";
 
+export const revalidate = 3600; // revalidate the data at most every hour
+
 export default async function Home() {
   const sliders = await getSlider({ slider_id: "homeslider" });
   const categories = await getCategoryNavigation();

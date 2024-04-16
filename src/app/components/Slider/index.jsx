@@ -42,7 +42,7 @@ export default function Slider({ images = [], size = "medium" }) {
             >
               <Image
                 className="w-full h-full object-cover"
-                src={`${slide.url}`}
+                src={`http://127.0.0.1:1337${slide.url}`}
                 alt={slide?.alternativeText ?? ""}
                 removeWrapper
               />

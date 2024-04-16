@@ -23,7 +23,6 @@ export default function Paging({ page = 1, pageCount = 1 }) {
         <button
           key={key}
           className={`${className} bg-white !text-black min-w-8 w-8 h-8`}
-          // className={cn(className, "bg-default-200/50 min-w-8 w-8 h-8")}
           onClick={onNext}
         >
           <ChevronIcon className="rotate-180" />
@@ -66,7 +65,7 @@ export default function Paging({ page = 1, pageCount = 1 }) {
   };
 
   return (
-    <div className="basis-full inline-flex justify-end mt-10 mb-20">
+    <div className="basis-full inline-flex justify-end mt-10 mb-20 px-6">
       <Pagination
         loop
         showControls

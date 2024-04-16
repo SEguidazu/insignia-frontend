@@ -14,7 +14,7 @@ export default async function StorePage({ params, searchParams }) {
 
   return (
     <div className="w-full flex flex-wrap justify-between items-start">
-      <h1 className="basis-3/4 lg:basis-full text-black text-3xl font-bold mb-4 capitalize">
+      <h1 className="basis-1/2 sm:basis-3/4 lg:basis-full text-black text-3xl font-bold mb-4 capitalize">
         Productos
       </h1>
 
@@ -27,7 +27,7 @@ export default async function StorePage({ params, searchParams }) {
       {response?.results && (
         <section
           id="products"
-          className="max-w-3xl basis-full lg:basis-3/4 grid grid-cols-3 grid-rows-10 gap-5 justify-items-center items-start"
+          className="max-w-3xl basis-full lg:basis-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-10 gap-5 justify-items-center items-start mx-auto lg:mx-[unset]"
         >
           {response?.results?.map((product) => (
             <ProductCard key={product.product_id} product={product} />

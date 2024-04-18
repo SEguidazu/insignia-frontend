@@ -43,7 +43,8 @@ export default function MercadoPagoButton({ products, user }) {
   };
 
   const WalletComponent = useMemo(() => {
-    if (!preferenceId) return <Spinner size="sm" className="ml-2 mb-1" />;
+    if (!preferenceId)
+      return <Spinner size="sm" className="mt-4 md:mt-[unset] md:ml-2 mb-1" />;
 
     return (
       <Wallet

@@ -13,10 +13,17 @@ export default function OrderProducts({ products, total }) {
       >
         <thead>
           <tr className="h-12 border-b-1 border-main_stroke text-main text-base text-left">
-            <th scope="col">Producto</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Total</th>
+            <th className="table-cell sm:hidden">Mi pedido</th>
+            <th className="hidden sm:table-cell">Producto</th>
+            <th className="hidden sm:table-cell text-center w-32 lg:w-60">
+              Precio
+            </th>
+            <th className="hidden sm:table-cell text-center w-32 lg:w-60">
+              Cantidad
+            </th>
+            <th className="hidden sm:table-cell text-center w-24 lg:w-44">
+              Total
+            </th>
           </tr>
         </thead>
         <tbody>

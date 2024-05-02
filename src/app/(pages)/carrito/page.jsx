@@ -6,6 +6,7 @@ import useStore from "@/app/hook/useStore";
 
 import CartDetails from "@/app/components/CartDetails";
 import MercadoPagoButton from "@/app/components/MercadoPagoButton";
+import LoginModal from "@/app/components/LoginModal";
 
 import { formatNumber } from "@/app/utils/formatNumbers";
 
@@ -27,7 +28,14 @@ export default function CartPage() {
             Impuestos y costos de envío serán añadidas luego
           </span>
         </div>
-        <MercadoPagoButton products={cart} user={user} />
+        {!!user?.id ? (
+          <MercadoPagoButton products={cart} user={user} />
+        ) : (
+          <div className="inline-flex flex-col items-center">
+            <p className="mb-2">Para finalizar la compra debe:</p>
+            <LoginModal btnText="Iniciar sesión" />
+          </div>
+        )}
       </div>
     </>
   );

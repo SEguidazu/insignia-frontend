@@ -17,7 +17,7 @@ import { EyeSlashFilledIcon, EyeFilledIcon } from "@/assets/icons";
 import { loginStrapi } from "@/app/lib/users";
 import { useUserStore } from "@/app/store/user";
 
-export default function LoginModal() {
+export default function LoginModal({ btnText = "Ingresar" }) {
   const { isLGscreen } = useScreenSize();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -166,7 +166,7 @@ export default function LoginModal() {
         }`}
         onPress={onOpen}
       >
-        Ingresar
+        {btnText}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={handleChange}>
         <ModalContent>

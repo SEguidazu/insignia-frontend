@@ -27,8 +27,8 @@ export default function AddCartModal({ product }) {
               <ModalHeader className="text-2xl text-main">
                 Añadir producto al carrito
               </ModalHeader>
-              <ModalBody className="w-full grid grid-cols-[160px_1fr] grid-rows-[1fr_40px] gap-5 pb-4">
-                <div className="h-[160px] rounded-lg bg-black row-span-2">
+              <ModalBody className="w-full grid grid-cols-1 sm:grid-cols-[160px_1fr] grid-rows-3 sm:grid-rows-2 lg:grid-rows-[1fr_40px] gap-5 pb-4">
+                <div className="max-w-[160px] h-[160px] rounded-lg bg-black row-span-2 mx-auto sm:mx-[unset]">
                   {!!product.images && (
                     <Image
                       src={`${product.images[0].url}`}
@@ -40,15 +40,17 @@ export default function AddCartModal({ product }) {
                   )}
                 </div>
                 <div>
-                  <h3 className="text-base text-main mb-3">{product.name}</h3>
-                  <span className="text-lg text-main font-bold">
+                  <h3 className="text-lg sm:text-base text-main mb-3">
+                    {product.name}
+                  </h3>
+                  <span className="text-2xl sm:text-lg text-main font-bold">
                     ${formatNumber(product.price)}.-
                   </span>
                 </div>
-                <div className="inline-flex items-center">
+                <div className="inline-flex flex-col lg:flex-row items-start lg:items-center">
                   <AddCartButton product={product} hasQtyHandler />
                   <button
-                    className="text-base text-black ml-14 underline underline-offset-2"
+                    className="text-base text-black mt-4 lg:mt-0 lg:ml-14 underline underline-offset-2"
                     onClick={onClose}
                   >
                     Seguir comprando

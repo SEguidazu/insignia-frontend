@@ -50,10 +50,10 @@ export default function ProfileUserData({ user }) {
   }, [user]);
 
   return (
-    <section className="grid grid-cols-2 gap-x-6 p-6 bg-white rounded-2xl">
+    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white rounded-2xl">
       <article>
         <div>
-          <h2 className="inline-block text-2xl text-main font-medium mb-4 pb-6">
+          <h2 className="inline-block text-xl lg:text-2xl text-main font-medium mb-4 pb-2 lg:pb-6">
             Datos Personales
           </h2>
           <button
@@ -111,7 +111,7 @@ export default function ProfileUserData({ user }) {
 
       <article>
         <div>
-          <h2 className="inline-block text-2xl text-main font-medium mb-4 pb-6">
+          <h2 className="inline-block text-xl lg:text-2xl text-main font-medium mb-4 pb-2 lg:pb-6">
             Mi dirección
           </h2>
           <button

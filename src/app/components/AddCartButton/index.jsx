@@ -18,7 +18,7 @@ export default function AddCartButton({
   const [qty, setQty] = useState(1);
 
   return (
-    <div className="inline-flex items-center">
+    <div className="flex items-center flex-wrap gap-5">
       {hasQtyHandler && (
         <ButtonGroup>
           <Button
@@ -47,7 +47,7 @@ export default function AddCartButton({
       )}
       <Button
         className={`bg-black text-base text-white ${
-          hasQtyHandler ? "w-40 ml-5" : "w-full"
+          hasQtyHandler ? "w-40" : "w-full"
         }`}
         radius="sm"
         endContent={!hasQtyHandler && <CartIconLight />}

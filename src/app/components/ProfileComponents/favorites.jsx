@@ -26,9 +26,9 @@ export default function ProfileFavorites({ user }) {
           No tienes ningun producto seleccionado como Favorito.
         </h2>
       ) : (
-        <ul className="grid grid-cols-3 gap-5 justify-items-center items-start">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-10 gap-5 justify-items-center items-start mx-auto lg:mx-[unset]">
           {user?.favorite_products?.map((product) => (
-            <li key={product?.product_id}>
+            <li key={product?.product_id} className="snap-center">
               <ProductCard
                 product={{ ...product, isFavorite: true }}
                 toggleFavoriteHandler={toggleFavoriteHandler}

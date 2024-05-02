@@ -40,7 +40,6 @@ export default function PaymentResultPage() {
               },
             }
           );
-          console.log(data);
           if (data) {
             setStatusDetail(data.status_detail);
             setOrderProducts(data.additional_info?.items);
@@ -78,14 +77,14 @@ export default function PaymentResultPage() {
     </div>
   ) : (
     <section className="text-main text-center">
-      <h1 className="w-full flex justify-center items-center gap-x-4 text-2xl uppercase font-medium mt-16 mb-6 relative">
+      <h1 className="w-full flex justify-center items-center gap-x-4 text-xl sm:text-2xl uppercase font-medium mt-16 mb-6 relative">
         {PaymentStatus[status]} {PaymentIcon}
       </h1>
 
       {status_detail && <p className="text-xl">{PaymentText[status_detail]}</p>}
 
       {order_id && (
-        <p className="text-2xl italic mt-8 mb-12">
+        <p className="text-xl sm:text-2xl italic mt-8 mb-12">
           Su número de Orden es:{" "}
           <span className="font-medium not-italic">#{order_id}</span>
         </p>

@@ -6,6 +6,7 @@ import useStore from "@/app/hook/useStore";
 
 import CartDetails from "@/app/components/CartDetails";
 import MercadoPagoButton from "@/app/components/MercadoPagoButton";
+import LoginModal from "@/app/components/LoginModal";
 
 import { formatNumber } from "@/app/utils/formatNumbers";
 
@@ -17,17 +18,24 @@ export default function CartPage() {
   return (
     <>
       <CartDetails />
-      <div className="w-full flex flex-row justify-end items-center gap-x-8 mb-9">
+      <div className="w-full flex flex-col md:flex-row justify-end items-center gap-x-8 mb-9">
         <div className="flex flex-col justify-center items-end">
-          <span className="text-main text-xl font-medium mb-2">
+          <span className="text-main text-lg md:text-xl font-medium mb-2">
             Sub-total{" "}
             <span className="text-2xl ml-6">${formatNumber(total)}</span>
           </span>
-          <span className="text-secondary_link text-base">
+          <span className="text-secondary_link text-sm md:text-base">
             Impuestos y costos de envío serán añadidas luego
           </span>
         </div>
-        <MercadoPagoButton products={cart} user={user} />
+        {!!user?.id ? (
+          <MercadoPagoButton products={cart} user={user} />
+        ) : (
+          <div className="inline-flex flex-col items-center">
+            <p className="mb-2">Para finalizar la compra debe:</p>
+            <LoginModal btnText="Iniciar sesión" />
+          </div>
+        )}
       </div>
     </>
   );

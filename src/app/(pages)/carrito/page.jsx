@@ -10,10 +10,15 @@ import LoginModal from "@/app/components/LoginModal";
 
 import { formatNumber } from "@/app/utils/formatNumbers";
 
+const MIN_PURCHASE = 10000;
+
 export default function CartPage() {
   const cart = useStore(useCartStore, (state) => state.cart);
   const total = useStore(useCartStore, (state) => state.total);
   const user = useStore(useUserStore, (state) => state.user);
+
+  console.log("total: ", total);
+  console.log("total number: ");
 
   return (
     <>
@@ -28,8 +33,15 @@ export default function CartPage() {
             Impuestos y costos de envío serán añadidas luego
           </span>
         </div>
-        {!!user?.id ? (
-          <MercadoPagoButton products={cart} user={user} />
+        {!user?.id ? (
+          total >= MIN_PURCHASE ? (
+            <MercadoPagoButton products={cart} user={user} />
+          ) : (
+            <div className="inline-flex flex-col items-center">
+              <p className="mb-1">El minimo de compra son</p>
+              <p className="text-xl font-medium">$10.000</p>
+            </div>
+          )
         ) : (
           <div className="inline-flex flex-col items-center">
             <p className="mb-2">Para finalizar la compra debe:</p>

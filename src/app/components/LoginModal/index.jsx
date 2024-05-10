@@ -44,8 +44,7 @@ export default function LoginModal({ btnText = "Ingresar" }) {
 
       if (data) setUserLoggedIn(data);
     } catch (error) {
-      console.error(error);
-      setErrorMessage("El email o la contraseña son invalidos.");
+      setErrorMessage(error?.message);
     } finally {
       setLoading(false);
     }

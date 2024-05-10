@@ -1,3 +1,6 @@
+export const EMAIL_NOT_CONFIRMED_ERROR_TEXT =
+  "Your account email is not confirmed";
+
 export class LoginError extends Error {
   constructor(message, details) {
     super(message, details);

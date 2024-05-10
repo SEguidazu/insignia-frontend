@@ -66,9 +66,10 @@ export default function SignUpForm({}) {
       </div>
 
       <div className="text-lg text-main font-bold mt-6">
-        <label className="block mb-3">Nombre y apellido</label>
+        <label className="block mb-3">Datos personales</label>
         <Input
           id="fullname"
+          className="mb-4"
           placeholder="Nombre y apellido"
           variant="bordered"
           radius="sm"
@@ -78,13 +79,33 @@ export default function SignUpForm({}) {
             required: "El nombre y apellido es un campo requerido.",
           })}
         />
+        <Input
+          id="dni"
+          placeholder="DNI"
+          type="number"
+          variant="bordered"
+          radius="sm"
+          isInvalid={errors?.dni?.type === "required"}
+          errorMessage={errors?.dni?.message}
+          {...register("dni", {
+            required: "El DNI es un campo requerido.",
+            minLength: {
+              value: 6,
+              message: "El DNI no es válido.",
+            },
+            maxLength: {
+              value: 8,
+              message: "El DNI no es válido.",
+            },
+          })}
+        />
       </div>
 
-      <div className="grid grid-cols-[.7fr_.3fr] grid-rows-[repeat(3,auto)] gap-x-4 text-lg text-main font-bold mt-6">
-        <label className="block mb-3 col-span-2">Dirección</label>
+      <div className="grid grid-cols-[1fr_1fr_1fr] grid-rows-[repeat(4,auto)] gap-x-4 text-lg text-main font-bold mt-6">
+        <label className="block mb-3 col-span-3">Dirección</label>
         <Input
           id="street"
-          className="mt-4"
+          className="col-span-2 mt-4"
           placeholder="Nombre de la calle"
           variant="bordered"
           radius="sm"
@@ -106,6 +127,22 @@ export default function SignUpForm({}) {
           {...register("number", {
             required: "El numero de domicilio es un campo requerido.",
           })}
+        />
+        <Input
+          id="floor"
+          className="mt-4"
+          placeholder="Piso"
+          variant="bordered"
+          radius="sm"
+          {...register("floor")}
+        />
+        <Input
+          id="apartment"
+          className="mt-4"
+          placeholder="Departamento"
+          variant="bordered"
+          radius="sm"
+          {...register("apartment")}
         />
         <Input
           id="city"

@@ -12,7 +12,7 @@ export default function StickyWhatsapp() {
       href={`https://wa.me/${WhatsappNumber}?text=Hola%20Insignia!%20Quiero%20comunicarme%20con%20ustedes!`}
       as={Link}
       variant="solid"
-      className="group min-w-0 w-16 h-16 p-0 rounded-full fixed right-6 bottom-6 bg-wpps_bg gap-0 hover:w-auto hover:gap-4 hover:px-4 hover:!opacity-100"
+      className="group min-w-0 w-16 h-16 p-0 rounded-full fixed right-6 bottom-6 bg-wpps_bg gap-0 z-10 hover:w-auto hover:gap-4 hover:px-4 hover:!opacity-100"
       isExternal
     >
       <span

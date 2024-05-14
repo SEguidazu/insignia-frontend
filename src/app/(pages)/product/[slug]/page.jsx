@@ -24,24 +24,30 @@ export default async function ProductPage({ params }) {
   if (product?.subcategory) delete product.subcategory;
 
   return (
-    <div className="w-full grid grid-cols-2 grid-rows-2 gap-x-8 gap-y-16">
-      <section id="product-images">
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-[auto] gap-y-6 md:gap-x-8 md:gap-y-16">
+      <section
+        id="product-images"
+        className="flex flex-wrap justify-between items-start"
+        tabIndex={-1}
+      >
         {!!product?.images && <ProductImageGallery images={product?.images} />}
       </section>
 
       <section
         id="product-details"
-        className="flex flex-col justify-start items-start"
+        className="flex flex-col justify-start items-start px-2 md:px-0"
       >
-        <h1 className="text-3xl text-main mb-6 font-medium">{product.name}</h1>
-        <span className="text-5xl text-main font-medium mb-8">
+        <h1 className="text-2xl md:text-3xl text-main mb-2 md:mb-6 font-medium">
+          {product.name}
+        </h1>
+        <span className="text-4xl md:text-5xl text-main font-medium mb-4 md:mb-8">
           ${formatNumber(product.price)}
         </span>
         <div className="mb-4">
           <AddCartButton product={product} hasQtyHandler />
         </div>
 
-        <div className="mb-10">
+        <div className="mb-6 md:mb-10">
           <AddFavoriteButton product={product} />
         </div>
 
@@ -70,14 +76,17 @@ export default async function ProductPage({ params }) {
         )}
       </section>
 
-      <section id="product-description" className="col-span-2">
-        <h2 className="text-main text-2xl font-medium mb-6">
-          Descripción del producto
-        </h2>
-        {product?.description && (
+      {product?.description && (
+        <section
+          id="product-description"
+          className="mb-10 px-2 md:px-0 md:col-span-2"
+        >
+          <h2 className="text-main text-2xl font-medium mb-6">
+            Descripción del producto
+          </h2>
           <ReactMarkdown>{product?.description}</ReactMarkdown>
-        )}
-      </section>
+        </section>
+      )}
     </div>
   );
 }

@@ -4,7 +4,7 @@ export default function Breadcrumbs({ product }) {
   return (
     <nav
       aria-label="breadcrumb"
-      className="max-w-7xl mx-auto mb-6 text-sm text-secondary_link"
+      className="max-w-7xl mx-auto mb-4 text-sm text-secondary_link"
     >
       <ol className="flex items-center gap-2">
         <li className="after:content-['/'] after:ml-2">

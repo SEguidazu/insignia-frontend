@@ -7,7 +7,7 @@ export default async function StoreLayout({ params, children }) {
   const response = await getProductBySlug(params.slug);
 
   return (
-    <main className="max-w-7xl mx-auto">
+    <main className="max-w-7xl mx-auto px-2">
       {response?.results && response?.results[0] && (
         <Breadcrumbs product={response?.results[0]} />
       )}

@@ -6,7 +6,7 @@ export default function Breadcrumbs({ product }) {
       aria-label="breadcrumb"
       className="max-w-7xl mx-auto mb-4 text-sm text-secondary_link"
     >
-      <ol className="flex items-center gap-2">
+      <ol className="flex flex-wrap items-center gap-2">
         <li className="after:content-['/'] after:ml-2">
           <Link href="/store">Inicio</Link>
         </li>

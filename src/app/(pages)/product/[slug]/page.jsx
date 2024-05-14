@@ -24,7 +24,7 @@ export default async function ProductPage({ params }) {
   if (product?.subcategory) delete product.subcategory;
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-[auto] gap-y-6 md:gap-x-8 md:gap-y-16">
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-[auto] gap-y-6 md:gap-x-8 md:gap-y-16 mb-10">
       <section
         id="product-images"
         className="flex flex-wrap justify-between items-start"
@@ -79,7 +79,7 @@ export default async function ProductPage({ params }) {
       {product?.description && (
         <section
           id="product-description"
-          className="mb-10 px-2 md:px-0 md:col-span-2"
+          className="px-2 md:px-0 md:col-span-2"
         >
           <h2 className="text-main text-2xl font-medium mb-6">
             Descripción del producto

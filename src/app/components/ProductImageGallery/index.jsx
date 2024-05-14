@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 
 export default function ProductImageGallery({ images = [] }) {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -13,38 +13,35 @@ export default function ProductImageGallery({ images = [] }) {
 
   return (
     !!images?.length > 0 && (
-      <div className="flex flex-row-reverse" tabIndex={-1}>
-        <figure className="basis-4/5 inline-flex justify-center items-center">
+      <>
+        <figure className="w-full shrink-0 p-2">
           <Image
             src={`${
               images[selectedImage].formats?.large.url ??
               images[selectedImage].url
             }`}
             alt=""
-            width={400}
-            height={460}
-            className="h-[460px] rounded-lg object-cover mx-auto"
+            className="h-80 sm:h-[460px] rounded-lg object-cover mx-auto"
+            removeWrapper
           />
         </figure>
-        <ul className="basis-1/5 overflow-hidden py-2">
+        <ul className="w-full flex flex-nowrap justify-items-center items-start gap-x-2 p-0.5 border-x-8 border-main_bgcolor overflow-x-scroll scroll-smooth snap-x shadow-inner">
           {images?.map((image, index) => (
-            <li key={image.id}>
+            <li key={image.id} className="snap-center shrink-0">
               <Image
-                key={image.id}
                 src={`${image.formats?.thumbnail.url ?? image.url}`}
                 alt=""
                 width={100}
-                height={100}
-                className={`h-[100px] outline-black rounded-lg object-cover mx-auto hover:cursor-pointer ${
+                className={`h-[100px] relative outline-black rounded-lg object-cover mx-auto hover:cursor-pointer ${
                   selectedImage === index ? "outline outline-2" : ""
-                }
-                ${index !== images.length - 1 ? "mb-4" : "mb-0"}`}
+                }`}
                 onClick={handleImageChange(index)}
+                removeWrapper
               />
             </li>
           ))}
         </ul>
-      </div>
+      </>
     )
   );
 }

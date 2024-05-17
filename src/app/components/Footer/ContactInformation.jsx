@@ -11,23 +11,23 @@ export default function ContactInformation() {
       >
         <ListboxItem
           className="not-italic"
-          textValue="contacto@joyasinsignia.com.ar"
+          textValue="insignia.mayorista@gmail.com"
         >
           <Link
-            href="mailto:contacto@joyasinsignia.com.ar"
+            href="mailto:insignia.mayorista@gmail.com"
             target="_blank"
             className="text-base text-white hover:text-black"
           >
-            contacto@joyasinsignia.com.ar
+            insignia.mayorista@gmail.com
           </Link>
         </ListboxItem>
         <ListboxItem className="not-italic" textValue="+54 11 1234 5678">
           <Link
-            href="tel:541112345678"
+            href="tel:541161201072"
             target="_blank"
             className="text-base text-white hover:text-black"
           >
-            +54 11 1234 5678
+            +54 11 6120 1072
           </Link>
         </ListboxItem>
       </ListboxSection>

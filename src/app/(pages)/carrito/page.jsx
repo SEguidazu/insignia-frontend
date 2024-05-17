@@ -17,9 +17,6 @@ export default function CartPage() {
   const total = useStore(useCartStore, (state) => state.total);
   const user = useStore(useUserStore, (state) => state.user);
 
-  console.log("total: ", total);
-  console.log("total number: ");
-
   return (
     <>
       <CartDetails />
@@ -33,7 +30,7 @@ export default function CartPage() {
             Impuestos y costos de envío serán añadidas luego
           </span>
         </div>
-        {!user?.id ? (
+        {user?.id ? (
           total >= MIN_PURCHASE ? (
             <MercadoPagoButton products={cart} user={user} />
           ) : (

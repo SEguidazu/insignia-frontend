@@ -85,8 +85,7 @@ export default function InformationSection() {
               Al momento del envió se te envía la factura de la empresa por la
               que se realiza el despacho, nosotros no cobramos ningún extra.
               Tener en cuenta que los costos de envió son por distancia y peso
-              de la caja que se despacha. Si contamos con envíos gratis a partir
-              de la compra de $20,000.-
+              de la caja que se despacha.
             </p>
           </>
         }

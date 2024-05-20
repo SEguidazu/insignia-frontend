@@ -23,7 +23,10 @@ export default function PopoverCart() {
   return (
     <Popover placement="bottom-end" offset={10}>
       <PopoverTrigger>
-        <Button className="min-w-0 w-auto p-3">
+        <Button className="min-w-0 w-auto p-3 relative overflow-visible">
+          <span className="text-secondary bg-main rounded-md py-[2px] px-[4px] absolute -top-1 -right-1 leading-none">
+            {cart?.length ?? 0}
+          </span>
           <CartIconDark aria-label="Carrito" />
         </Button>
       </PopoverTrigger>

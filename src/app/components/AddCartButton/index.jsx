@@ -9,6 +9,7 @@ import { CartIconLight } from "@/assets/icons";
 export default function AddCartButton({
   hasQtyHandler = false,
   product = null,
+  callback,
   ...props
 }) {
   const addProduct = useCartStore((state) => state.addProduct);
@@ -16,6 +17,11 @@ export default function AddCartButton({
     (state) => state.getProductQtyInCart
   );
   const [qty, setQty] = useState(1);
+
+  const handleAddProduct = (event) => {
+    addProduct(product, qty);
+    callback?.();
+  };
 
   return (
     <div className="flex items-center flex-wrap gap-5">
@@ -51,7 +57,7 @@ export default function AddCartButton({
         }`}
         radius="sm"
         endContent={!hasQtyHandler && <CartIconLight />}
-        onPress={(e) => addProduct(product, qty)}
+        onPress={handleAddProduct}
         isDisabled={product?.stock === getProductQtyInCart(product)}
       >
         Añadir al carrito

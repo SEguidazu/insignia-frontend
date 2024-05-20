@@ -48,7 +48,11 @@ export default function AddCartModal({ product }) {
                   </span>
                 </div>
                 <div className="inline-flex flex-col lg:flex-row items-start lg:items-center">
-                  <AddCartButton product={product} hasQtyHandler />
+                  <AddCartButton
+                    product={product}
+                    hasQtyHandler
+                    callback={onClose}
+                  />
                   <button
                     className="text-base text-black mt-4 lg:mt-0 lg:ml-14 underline underline-offset-2"
                     onClick={onClose}

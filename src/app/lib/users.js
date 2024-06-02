@@ -8,7 +8,7 @@ import {
 
 export const loginStrapi = async ({ identifier, password }) => {
   try {
-    const auth = await fetchConfig("/auth/local", {
+    const responseAuth = await fetchConfig("/auth/local", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,23 +18,27 @@ export const loginStrapi = async ({ identifier, password }) => {
         password,
       }),
     });
+    const auth = await responseAuth.json();
 
-    const { jwt } = auth.json();
+    console.log("auth: ", auth.jwt);
 
-    const response = await fetchConfig(
+    const responseUser = await fetchConfig(
       "/users/me?populate=address,favorite_products",
       {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.jwt}`,
+        },
       }
     );
 
-    const user = response.json();
+    const user = await responseUser.json();
 
-    return { user, jwt };
+    return { user: user, jwt: auth.jwt };
   } catch (error) {
+    console.error("[ERROR_LOGIN]: ", error);
+
     if (
       error?.response?.data.error.message === EMAIL_NOT_CONFIRMED_ERROR_TEXT
     ) {

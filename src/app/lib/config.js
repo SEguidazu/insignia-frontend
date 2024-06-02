@@ -4,6 +4,8 @@ const STRAPI_KEY = process.env.STRAPI_API_KEY;
 function updateOptions(options) {
   const update = { ...options };
 
+  if (!!update.headers?.Authorization) return update;
+
   update.headers = {
     ...update.headers,
     Authorization: `Bearer ${STRAPI_KEY}`,

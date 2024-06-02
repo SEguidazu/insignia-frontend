@@ -42,7 +42,10 @@ export default function LoginModal({ btnText = "Ingresar" }) {
         password: formData.login_password,
       });
 
-      if (data) setUserLoggedIn(data);
+      if (data?.jwt) {
+        setUserLoggedIn(data);
+        handleChange();
+      }
     } catch (error) {
       setErrorMessage(error?.message);
     } finally {

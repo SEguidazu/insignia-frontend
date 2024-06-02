@@ -53,10 +53,13 @@ export const registerUserStrapi = async (values) => {
 
   return await fetchConfig("/users", {
     method: "POST",
-    body: {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
       ...formValues,
       role: 1,
-    },
+    }),
   })
     .then((response) => response.json())
     .catch(({ response }) => {
@@ -72,12 +75,13 @@ export const updateUserStrapi = async (values, jwt) => {
   try {
     const response = await fetchConfig("/user/me", {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
       method: "PUT",
-      body: {
+      body: JSON.stringify({
         ...values,
-      },
+      }),
     });
 
     return response.json();

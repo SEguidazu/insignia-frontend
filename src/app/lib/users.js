@@ -10,10 +10,13 @@ export const loginStrapi = async ({ identifier, password }) => {
   try {
     const auth = await fetchConfig("/auth/local", {
       method: "POST",
-      body: {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         identifier,
         password,
-      },
+      }),
     });
 
     const { jwt } = auth.json();
@@ -53,10 +56,13 @@ export const registerUserStrapi = async (values) => {
 
   return await fetchConfig("/users", {
     method: "POST",
-    body: {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
       ...formValues,
       role: 1,
-    },
+    }),
   })
     .then((response) => response.json())
     .catch(({ response }) => {
@@ -71,13 +77,14 @@ export const registerUserStrapi = async (values) => {
 export const updateUserStrapi = async (values, jwt) => {
   try {
     const response = await fetchConfig("/user/me", {
+      method: "PUT",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
-      method: "PUT",
-      body: {
+      body: JSON.stringify({
         ...values,
-      },
+      }),
     });
 
     return response.json();

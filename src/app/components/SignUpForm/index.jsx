@@ -9,20 +9,23 @@ import { registerUserStrapi, provinces } from "@/app/lib/users";
 
 export default function SignUpForm({}) {
   const router = useRouter();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const onSubmit = async (formData) => {
     try {
       setLoading(true);
+
       const user = await registerUserStrapi(formData);
 
-      if (user) router.push("/registro/exitoso");
+      if (user?.id) router.push("/registro/exitoso");
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -53,6 +56,7 @@ export default function SignUpForm({}) {
           type="password"
           variant="bordered"
           radius="sm"
+          description="La contraseña debe tener al menos 8 caracteres."
           isInvalid={errors?.password?.type === "required"}
           errorMessage={errors?.password?.message}
           {...register("password", {

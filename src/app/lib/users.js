@@ -20,8 +20,6 @@ export const loginStrapi = async ({ identifier, password }) => {
     });
     const auth = await responseAuth.json();
 
-    console.log("auth: ", auth.jwt);
-
     const responseUser = await fetchConfig(
       "/users/me?populate=address,favorite_products",
       {

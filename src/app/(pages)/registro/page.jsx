@@ -1,15 +1,12 @@
 import dynamic from "next/dynamic";
 
-import Image from "next/image";
-import InsigniaLogoPattern from "@/assets/insignia-logo-bg.png";
-
 const SignUpForm = dynamic(() => import("@/app/components/SignUpForm"), {
   ssr: false,
 });
 
 export default async function Registro() {
   return (
-    <main className="max-w-7xl mx-auto mt-12 mb-20 flex justify-between items-center">
+    <div className="w-full mt-12 mb-20 flex justify-between items-center">
       <div className="max-w-lg w-full">
         <h1 className="text-black text-3xl font-bold mb-4">
           Completá tus datos
@@ -19,9 +16,6 @@ export default async function Registro() {
         </p>
         <SignUpForm />
       </div>
-      <div>
-        <Image src={InsigniaLogoPattern} alt="" />
-      </div>
-    </main>
+    </div>
   );
 }

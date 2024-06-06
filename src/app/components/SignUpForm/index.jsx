@@ -105,7 +105,7 @@ export default function SignUpForm({}) {
         />
       </div>
 
-      <div className="grid grid-cols-[1fr_1fr_1fr] grid-rows-[repeat(4,auto)] gap-x-4 text-lg text-main font-bold mt-6">
+      <div className="grid grid-cols-3 grid-rows-auto gap-x-4 text-lg text-main font-bold mt-6">
         <label className="block mb-3 col-span-3">Dirección</label>
         <Input
           id="street"
@@ -150,7 +150,7 @@ export default function SignUpForm({}) {
         />
         <Input
           id="city"
-          className="mt-4"
+          className="mt-4 col-span-3 col-start-1 row-start-4 sm:col-span-1 sm:col-start-3 sm:row-start-3"
           placeholder="Ciudad / Barrio"
           variant="bordered"
           radius="sm"
@@ -175,7 +175,7 @@ export default function SignUpForm({}) {
         />
         <Select
           id="province"
-          className="col-span-2 mt-4"
+          className="col-span-3 sm:col-span-2 mt-4"
           aria-label="Provincia"
           placeholder="Provincia"
           variant="bordered"
@@ -194,10 +194,11 @@ export default function SignUpForm({}) {
         </Select>
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-[repeat(2, auto)] gap-x-4 text-lg text-main font-bold mt-6">
+      <div className="grid grid-cols-2 grid-rows-auto gap-x-4 text-lg text-main font-bold mt-6">
         <label className="block mb-3 col-span-2">Contacto</label>
         <Input
           id="email"
+          className="col-span-2 sm:col-span-1"
           type="email"
           placeholder="Email"
           variant="bordered"
@@ -210,6 +211,7 @@ export default function SignUpForm({}) {
         />
         <Input
           id="whatsapp"
+          className="mt-4 col-span-2 sm:mt-0 sm:col-span-1"
           type="tel"
           placeholder="WhatsApp"
           description="A este número te estaremos contactando"

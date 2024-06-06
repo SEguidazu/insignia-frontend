@@ -1,12 +1,19 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from 'next/navigation'
 
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
 import { ArrowRightIcon } from "@/assets/icons";
 
-export default function CatalogSidebar({ catalogMenu = [] }) {
+export default function CatalogSidebar({ catalogMenu = [], closeMobileMenu }) {
+  const router = useRouter()
+
+  const handleClickButton = (path) => {
+    closeMobileMenu?.()
+    router.push(`/store${path}`)
+  }
+
   return (
     <div className="mt-6 pt-6 border-t-1 border-main_stroke">
       <h3 className="text-lg text-main font-medium">Catálogo</h3>
@@ -21,21 +28,22 @@ export default function CatalogSidebar({ catalogMenu = [] }) {
             <ul className="border-l-1 border-main_stroke">
               {items?.map(({ id, title, path }) => (
                 <li key={`${id}-${title}-${path}`}>
-                  <Link
-                    className="block text-base text-main py-2 px-3"
-                    href={`/store${path}`}
+                  <button
+                    className="w-full text-left text-base text-main py-2 px-3"
+                    onClick={(e) => handleClickButton(path)}
+                    aria-label={`Ver ${title}`}
                   >
                     {title}
-                  </Link>
+                  </button>
                 </li>
               ))}
               <li>
-                <Link
-                  className="block text-base text-main py-2 px-3"
-                  href={`/store${path}`}
+                <button
+                  className="w-full text-left text-base text-main py-2 px-3"
+                  onClick={(e) => handleClickButton(path)}
                 >
                   Ver todos
-                </Link>
+                </button>
               </li>
             </ul>
           </AccordionItem>

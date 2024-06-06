@@ -35,6 +35,8 @@ export default function Header({ catalogMenu }) {
     );
   }, []);
 
+  const handleCloseMenu = () => setIsMenuOpen(false);
+
   return (
     <>
       <Navbar
@@ -85,9 +87,9 @@ export default function Header({ catalogMenu }) {
         {/* MENU MOBILE */}
         <NavbarMenu portalContainer={portalContainer} className="top-[5.5rem]">
           <NavbarMenuItem>
-            <ProfilePopover isLGscreen={isLGscreen} />
+            <ProfilePopover isLGscreen={isLGscreen} closeMobileMenu={handleCloseMenu} />
 
-            <CatalogSidebar catalogMenu={catalogMenu} />
+            <CatalogSidebar catalogMenu={catalogMenu} closeMobileMenu={handleCloseMenu} />
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
